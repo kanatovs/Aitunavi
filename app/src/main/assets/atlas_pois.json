@@ -1,0 +1,2673 @@
+{
+  "version": 1,
+  "viewBox": {
+    "width": 924.69,
+    "height": 396.16
+  },
+  "pois": [
+    {
+      "id": "c1.1.stairs.01",
+      "building": "c1",
+      "floor": 1,
+      "type": "stairs",
+      "label": "Stairs",
+      "xPercent": 0.642498,
+      "yPercent": 0.61046,
+      "tags": [
+        "stairs"
+      ],
+      "aliases": [
+        "stairs",
+        "stair",
+        "лестница",
+        "лестницы"
+      ]
+    },
+    {
+      "id": "c1.1.stairs.02",
+      "building": "c1",
+      "floor": 1,
+      "type": "stairs",
+      "label": "Stairs",
+      "xPercent": 0.656169,
+      "yPercent": 0.376243,
+      "tags": [
+        "stairs"
+      ],
+      "aliases": [
+        "stairs",
+        "stair",
+        "лестница",
+        "лестницы"
+      ]
+    },
+    {
+      "id": "c1.1.stairs.03",
+      "building": "c1",
+      "floor": 1,
+      "type": "stairs",
+      "label": "Stairs",
+      "xPercent": 0.357632,
+      "yPercent": 0.610183,
+      "tags": [
+        "stairs"
+      ],
+      "aliases": [
+        "stairs",
+        "stair",
+        "лестница",
+        "лестницы"
+      ]
+    },
+    {
+      "id": "c1.1.stairs.04",
+      "building": "c1",
+      "floor": 1,
+      "type": "stairs",
+      "label": "Stairs",
+      "xPercent": 0.344091,
+      "yPercent": 0.376278,
+      "tags": [
+        "stairs"
+      ],
+      "aliases": [
+        "stairs",
+        "stair",
+        "лестница",
+        "лестницы"
+      ]
+    },
+    {
+      "id": "c1.2.stairs.01",
+      "building": "c1",
+      "floor": 2,
+      "type": "stairs",
+      "label": "Stairs",
+      "xPercent": 0.642498,
+      "yPercent": 0.61046,
+      "tags": [
+        "stairs"
+      ],
+      "aliases": [
+        "stairs",
+        "stair",
+        "лестница",
+        "лестницы"
+      ]
+    },
+    {
+      "id": "c1.2.stairs.02",
+      "building": "c1",
+      "floor": 2,
+      "type": "stairs",
+      "label": "Stairs",
+      "xPercent": 0.656169,
+      "yPercent": 0.376243,
+      "tags": [
+        "stairs"
+      ],
+      "aliases": [
+        "stairs",
+        "stair",
+        "лестница",
+        "лестницы"
+      ]
+    },
+    {
+      "id": "c1.2.stairs.03",
+      "building": "c1",
+      "floor": 2,
+      "type": "stairs",
+      "label": "Stairs",
+      "xPercent": 0.357632,
+      "yPercent": 0.610183,
+      "tags": [
+        "stairs"
+      ],
+      "aliases": [
+        "stairs",
+        "stair",
+        "лестница",
+        "лестницы"
+      ]
+    },
+    {
+      "id": "c1.2.stairs.04",
+      "building": "c1",
+      "floor": 2,
+      "type": "stairs",
+      "label": "Stairs",
+      "xPercent": 0.344091,
+      "yPercent": 0.376278,
+      "tags": [
+        "stairs"
+      ],
+      "aliases": [
+        "stairs",
+        "stair",
+        "лестница",
+        "лестницы"
+      ]
+    },
+    {
+      "id": "c1.3.stairs.01",
+      "building": "c1",
+      "floor": 3,
+      "type": "stairs",
+      "label": "Stairs",
+      "xPercent": 0.642498,
+      "yPercent": 0.61046,
+      "tags": [
+        "stairs"
+      ],
+      "aliases": [
+        "stairs",
+        "stair",
+        "лестница",
+        "лестницы"
+      ]
+    },
+    {
+      "id": "c1.3.stairs.02",
+      "building": "c1",
+      "floor": 3,
+      "type": "stairs",
+      "label": "Stairs",
+      "xPercent": 0.656169,
+      "yPercent": 0.376243,
+      "tags": [
+        "stairs"
+      ],
+      "aliases": [
+        "stairs",
+        "stair",
+        "лестница",
+        "лестницы"
+      ]
+    },
+    {
+      "id": "c1.3.stairs.03",
+      "building": "c1",
+      "floor": 3,
+      "type": "stairs",
+      "label": "Stairs",
+      "xPercent": 0.357632,
+      "yPercent": 0.610183,
+      "tags": [
+        "stairs"
+      ],
+      "aliases": [
+        "stairs",
+        "stair",
+        "лестница",
+        "лестницы"
+      ]
+    },
+    {
+      "id": "c1.3.stairs.04",
+      "building": "c1",
+      "floor": 3,
+      "type": "stairs",
+      "label": "Stairs",
+      "xPercent": 0.344091,
+      "yPercent": 0.376278,
+      "tags": [
+        "stairs"
+      ],
+      "aliases": [
+        "stairs",
+        "stair",
+        "лестница",
+        "лестницы"
+      ]
+    },
+    {
+      "id": "c1.1.wc.01",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.234435,
+      "yPercent": 0.434143,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.02",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.228433,
+      "yPercent": 0.467235,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.03",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.164206,
+      "yPercent": 0.477509,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.04",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.156301,
+      "yPercent": 0.510602,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.05",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.20502,
+      "yPercent": 0.42758,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.06",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.201841,
+      "yPercent": 0.440201,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.07",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.533454,
+      "yPercent": 0.351297,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.08",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.525225,
+      "yPercent": 0.384567,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.09",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.458986,
+      "yPercent": 0.354099,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.10",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.452757,
+      "yPercent": 0.387369,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.11",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.487396,
+      "yPercent": 0.334461,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.12",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.483795,
+      "yPercent": 0.346729,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.13",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.834182,
+      "yPercent": 0.475591,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.14",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.826039,
+      "yPercent": 0.508734,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.15",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.763532,
+      "yPercent": 0.431921,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.16",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.757324,
+      "yPercent": 0.46514,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.17",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.782424,
+      "yPercent": 0.421496,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.wc.18",
+      "building": "c1",
+      "floor": 1,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.793574,
+      "yPercent": 0.435784,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.01",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.234435,
+      "yPercent": 0.434143,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.02",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.228433,
+      "yPercent": 0.467235,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.03",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.164206,
+      "yPercent": 0.477509,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.04",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.156301,
+      "yPercent": 0.510602,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.05",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.20502,
+      "yPercent": 0.42758,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.06",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.201841,
+      "yPercent": 0.440201,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.07",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.533454,
+      "yPercent": 0.351297,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.08",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.525225,
+      "yPercent": 0.384567,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.09",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.458986,
+      "yPercent": 0.354099,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.10",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.452757,
+      "yPercent": 0.387369,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.11",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.487396,
+      "yPercent": 0.334461,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.12",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.483795,
+      "yPercent": 0.346729,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.13",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.834182,
+      "yPercent": 0.475591,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.14",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.826039,
+      "yPercent": 0.508734,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.15",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.763532,
+      "yPercent": 0.431921,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.16",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.757324,
+      "yPercent": 0.46514,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.17",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.782424,
+      "yPercent": 0.421496,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.2.wc.18",
+      "building": "c1",
+      "floor": 2,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.793574,
+      "yPercent": 0.435784,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.01",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.234435,
+      "yPercent": 0.434143,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.02",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.228433,
+      "yPercent": 0.467235,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.03",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.164206,
+      "yPercent": 0.477509,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.04",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.156301,
+      "yPercent": 0.510602,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.05",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.20502,
+      "yPercent": 0.42758,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.06",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.201841,
+      "yPercent": 0.440201,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.07",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.533454,
+      "yPercent": 0.351297,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.08",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.525225,
+      "yPercent": 0.384567,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.09",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.458986,
+      "yPercent": 0.354099,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.10",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.452757,
+      "yPercent": 0.387369,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.11",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.487396,
+      "yPercent": 0.334461,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.12",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.483795,
+      "yPercent": 0.346729,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.13",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.834182,
+      "yPercent": 0.475591,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.14",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.826039,
+      "yPercent": 0.508734,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.15",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.763532,
+      "yPercent": 0.431921,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.16",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.757324,
+      "yPercent": 0.46514,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.17",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.782424,
+      "yPercent": 0.421496,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.3.wc.18",
+      "building": "c1",
+      "floor": 3,
+      "type": "wc",
+      "label": "WC",
+      "xPercent": 0.793574,
+      "yPercent": 0.435784,
+      "tags": [
+        "wc"
+      ],
+      "aliases": [
+        "wc",
+        "toilet",
+        "туалет"
+      ]
+    },
+    {
+      "id": "c1.1.exit.01",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.706247,
+      "yPercent": 0.815504,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.02",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.700483,
+      "yPercent": 0.827191,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.03",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.80441,
+      "yPercent": 0.880528,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.04",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.798646,
+      "yPercent": 0.892215,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.05",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.545112,
+      "yPercent": 0.754266,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.06",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.539186,
+      "yPercent": 0.766105,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.07",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.455677,
+      "yPercent": 0.754266,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.08",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.449794,
+      "yPercent": 0.766105,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.09",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.293958,
+      "yPercent": 0.821259,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.10",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.288259,
+      "yPercent": 0.833022,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.11",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.19533,
+      "yPercent": 0.886611,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.12",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.189642,
+      "yPercent": 0.8984,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.01",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.706247,
+      "yPercent": 0.815504,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.02",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.700483,
+      "yPercent": 0.827191,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.03",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.80441,
+      "yPercent": 0.880528,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.04",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.798646,
+      "yPercent": 0.892215,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.05",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.545112,
+      "yPercent": 0.754266,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.06",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.539186,
+      "yPercent": 0.766105,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.07",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.455677,
+      "yPercent": 0.754266,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.08",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.449794,
+      "yPercent": 0.766105,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.09",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.293958,
+      "yPercent": 0.821259,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.10",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.288259,
+      "yPercent": 0.833022,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.11",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.19533,
+      "yPercent": 0.886611,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.12",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.189642,
+      "yPercent": 0.8984,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.01",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.706247,
+      "yPercent": 0.815504,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.02",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.700483,
+      "yPercent": 0.827191,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.03",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.80441,
+      "yPercent": 0.880528,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.04",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.798646,
+      "yPercent": 0.892215,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.05",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.545112,
+      "yPercent": 0.754266,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.06",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.539186,
+      "yPercent": 0.766105,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.07",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.455677,
+      "yPercent": 0.754266,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.08",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.449794,
+      "yPercent": 0.766105,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.09",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.293958,
+      "yPercent": 0.821259,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.10",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.288259,
+      "yPercent": 0.833022,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.11",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.19533,
+      "yPercent": 0.886611,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.12",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.189642,
+      "yPercent": 0.8984,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.01",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.518952,
+      "yPercent": 0.289731,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.02",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.513242,
+      "yPercent": 0.301242,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.03",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.174988,
+      "yPercent": 0.393402,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.04",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.169278,
+      "yPercent": 0.404912,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.05",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.824449,
+      "yPercent": 0.402312,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.06",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.818772,
+      "yPercent": 0.413823,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.07",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.706247,
+      "yPercent": 0.815504,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.08",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.700483,
+      "yPercent": 0.827191,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.09",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.80441,
+      "yPercent": 0.880528,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.10",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.798646,
+      "yPercent": 0.892215,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.11",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.545112,
+      "yPercent": 0.754266,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.12",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.539186,
+      "yPercent": 0.766105,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.13",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.455677,
+      "yPercent": 0.754266,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.14",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.449794,
+      "yPercent": 0.766105,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.15",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.293958,
+      "yPercent": 0.821259,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.16",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.288259,
+      "yPercent": 0.833022,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.17",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.19533,
+      "yPercent": 0.886611,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.1.exit.18",
+      "building": "c1",
+      "floor": 1,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.189642,
+      "yPercent": 0.8984,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.01",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.518952,
+      "yPercent": 0.289731,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.02",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.513242,
+      "yPercent": 0.301242,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.03",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.174988,
+      "yPercent": 0.393402,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.04",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.169278,
+      "yPercent": 0.404912,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.05",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.824449,
+      "yPercent": 0.402312,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.06",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.818772,
+      "yPercent": 0.413823,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.07",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.706247,
+      "yPercent": 0.815504,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.08",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.700483,
+      "yPercent": 0.827191,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.09",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.80441,
+      "yPercent": 0.880528,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.10",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.798646,
+      "yPercent": 0.892215,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.11",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.545112,
+      "yPercent": 0.754266,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.12",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.539186,
+      "yPercent": 0.766105,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.13",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.455677,
+      "yPercent": 0.754266,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.14",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.449794,
+      "yPercent": 0.766105,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.15",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.293958,
+      "yPercent": 0.821259,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.16",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.288259,
+      "yPercent": 0.833022,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.17",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.19533,
+      "yPercent": 0.886611,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.2.exit.18",
+      "building": "c1",
+      "floor": 2,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.189642,
+      "yPercent": 0.8984,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.01",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.518952,
+      "yPercent": 0.289731,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.02",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.513242,
+      "yPercent": 0.301242,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.03",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.174988,
+      "yPercent": 0.393402,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.04",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.169278,
+      "yPercent": 0.404912,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.05",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.824449,
+      "yPercent": 0.402312,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.06",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.818772,
+      "yPercent": 0.413823,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.07",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.706247,
+      "yPercent": 0.815504,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.08",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.700483,
+      "yPercent": 0.827191,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.09",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.80441,
+      "yPercent": 0.880528,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.10",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.798646,
+      "yPercent": 0.892215,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.11",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.545112,
+      "yPercent": 0.754266,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.12",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.539186,
+      "yPercent": 0.766105,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.13",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.455677,
+      "yPercent": 0.754266,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.14",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.449794,
+      "yPercent": 0.766105,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.15",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.293958,
+      "yPercent": 0.821259,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.16",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.288259,
+      "yPercent": 0.833022,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.17",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.19533,
+      "yPercent": 0.886611,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    },
+    {
+      "id": "c1.3.exit.18",
+      "building": "c1",
+      "floor": 3,
+      "type": "exit",
+      "label": "Exit",
+      "xPercent": 0.189642,
+      "yPercent": 0.8984,
+      "tags": [
+        "exit"
+      ],
+      "aliases": [
+        "exit",
+        "выход",
+        "эвакуация"
+      ]
+    }
+  ]
+}

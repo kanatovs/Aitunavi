@@ -1,0 +1,2502 @@
+{
+  "version": 1,
+  "viewBox": {
+    "width": 924.69,
+    "height": 396.16
+  },
+  "rooms": [
+    {
+      "id": "c1.1.141",
+      "building": "c1",
+      "floor": 1,
+      "code": "141",
+      "label": "141",
+      "xPercent": 0.300944,
+      "yPercent": 0.319644,
+      "tags": [],
+      "aliases": [
+        "141",
+        "c1.1.141"
+      ]
+    },
+    {
+      "id": "c1.1.142",
+      "building": "c1",
+      "floor": 1,
+      "code": "142",
+      "label": "142",
+      "xPercent": 0.306546,
+      "yPercent": 0.408194,
+      "tags": [],
+      "aliases": [
+        "142",
+        "c1.1.142"
+      ]
+    },
+    {
+      "id": "c1.1.143",
+      "building": "c1",
+      "floor": 1,
+      "code": "143",
+      "label": "143",
+      "xPercent": 0.250971,
+      "yPercent": 0.340872,
+      "tags": [],
+      "aliases": [
+        "143",
+        "c1.1.143"
+      ]
+    },
+    {
+      "id": "c1.1.155",
+      "building": "c1",
+      "floor": 1,
+      "code": "155",
+      "label": "155",
+      "xPercent": 0.329072,
+      "yPercent": 0.80576,
+      "tags": [],
+      "aliases": [
+        "155",
+        "c1.1.155"
+      ]
+    },
+    {
+      "id": "c1.1.163",
+      "building": "c1",
+      "floor": 1,
+      "code": "163",
+      "label": "163",
+      "xPercent": 0.336351,
+      "yPercent": 0.733315,
+      "tags": [],
+      "aliases": [
+        "163",
+        "c1.1.163"
+      ]
+    },
+    {
+      "id": "c1.1.164",
+      "building": "c1",
+      "floor": 1,
+      "code": "164",
+      "label": "164",
+      "xPercent": 0.33276,
+      "yPercent": 0.684067,
+      "tags": [],
+      "aliases": [
+        "164",
+        "c1.1.164"
+      ]
+    },
+    {
+      "id": "c1.1.165",
+      "building": "c1",
+      "floor": 1,
+      "code": "165",
+      "label": "165",
+      "xPercent": 0.275368,
+      "yPercent": 0.700626,
+      "tags": [],
+      "aliases": [
+        "165",
+        "c1.1.165"
+      ]
+    },
+    {
+      "id": "c1.1.168",
+      "building": "c1",
+      "floor": 1,
+      "code": "168",
+      "label": "168",
+      "xPercent": 0.285598,
+      "yPercent": 0.578327,
+      "tags": [],
+      "aliases": [
+        "168",
+        "c1.1.168"
+      ]
+    },
+    {
+      "id": "c1.1.221p",
+      "building": "c1",
+      "floor": 1,
+      "code": "221P",
+      "label": "221P",
+      "xPercent": 0.014924,
+      "yPercent": 0.421623,
+      "tags": [],
+      "aliases": [
+        "221p",
+        "c1.1.221p"
+      ]
+    },
+    {
+      "id": "c1.1.232p",
+      "building": "c1",
+      "floor": 1,
+      "code": "232P",
+      "label": "232P",
+      "xPercent": 0.286193,
+      "yPercent": 0.236394,
+      "tags": [],
+      "aliases": [
+        "232p",
+        "c1.1.232p"
+      ]
+    },
+    {
+      "id": "c1.1.233p",
+      "building": "c1",
+      "floor": 1,
+      "code": "233P",
+      "label": "233P",
+      "xPercent": 0.294791,
+      "yPercent": 0.353519,
+      "tags": [],
+      "aliases": [
+        "233p",
+        "c1.1.233p"
+      ]
+    },
+    {
+      "id": "c1.1.235p",
+      "building": "c1",
+      "floor": 1,
+      "code": "235P",
+      "label": "235P",
+      "xPercent": 0.29876,
+      "yPercent": 0.421623,
+      "tags": [],
+      "aliases": [
+        "235p",
+        "c1.1.235p"
+      ]
+    },
+    {
+      "id": "c1.1.238k",
+      "building": "c1",
+      "floor": 1,
+      "code": "238K",
+      "label": "238K",
+      "xPercent": 0.264099,
+      "yPercent": 0.588096,
+      "tags": [],
+      "aliases": [
+        "238k",
+        "c1.1.238k"
+      ]
+    },
+    {
+      "id": "c1.1.239k",
+      "building": "c1",
+      "floor": 1,
+      "code": "239K",
+      "label": "239K",
+      "xPercent": 0.306146,
+      "yPercent": 0.553085,
+      "tags": [],
+      "aliases": [
+        "239k",
+        "c1.1.239k"
+      ]
+    },
+    {
+      "id": "c1.1.240k",
+      "building": "c1",
+      "floor": 1,
+      "code": "240K",
+      "label": "240K",
+      "xPercent": 0.271799,
+      "yPercent": 0.68384,
+      "tags": [],
+      "aliases": [
+        "240k",
+        "c1.1.240k"
+      ]
+    },
+    {
+      "id": "c1.1.241k",
+      "building": "c1",
+      "floor": 1,
+      "code": "241K",
+      "label": "241K",
+      "xPercent": 0.311618,
+      "yPercent": 0.614701,
+      "tags": [],
+      "aliases": [
+        "241k",
+        "c1.1.241k"
+      ]
+    },
+    {
+      "id": "c1.1.242k",
+      "building": "c1",
+      "floor": 1,
+      "code": "242K",
+      "label": "242K",
+      "xPercent": 0.316095,
+      "yPercent": 0.681921,
+      "tags": [],
+      "aliases": [
+        "242k",
+        "c1.1.242k"
+      ]
+    },
+    {
+      "id": "c1.1.244k",
+      "building": "c1",
+      "floor": 1,
+      "code": "244K",
+      "label": "244K",
+      "xPercent": 0.303615,
+      "yPercent": 0.804801,
+      "tags": [],
+      "aliases": [
+        "244k",
+        "c1.1.244k"
+      ]
+    },
+    {
+      "id": "c1.1.245k",
+      "building": "c1",
+      "floor": 1,
+      "code": "245K",
+      "label": "245K",
+      "xPercent": 0.332187,
+      "yPercent": 0.794603,
+      "tags": [],
+      "aliases": [
+        "245k",
+        "c1.1.245k"
+      ]
+    },
+    {
+      "id": "c1.1.251l",
+      "building": "c1",
+      "floor": 1,
+      "code": "251L",
+      "label": "251L",
+      "xPercent": 0.11154,
+      "yPercent": 0.501439,
+      "tags": [],
+      "aliases": [
+        "251l",
+        "c1.1.251l"
+      ]
+    },
+    {
+      "id": "c1.1.252l",
+      "building": "c1",
+      "floor": 1,
+      "code": "252L",
+      "label": "252L",
+      "xPercent": 0.079713,
+      "yPercent": 0.524258,
+      "tags": [],
+      "aliases": [
+        "252l",
+        "c1.1.252l"
+      ]
+    },
+    {
+      "id": "c1.1.253l",
+      "building": "c1",
+      "floor": 1,
+      "code": "253L",
+      "label": "253L",
+      "xPercent": 0.143053,
+      "yPercent": 0.659279,
+      "tags": [],
+      "aliases": [
+        "253l",
+        "c1.1.253l"
+      ]
+    },
+    {
+      "id": "c1.1.254l",
+      "building": "c1",
+      "floor": 1,
+      "code": "254L",
+      "label": "254L",
+      "xPercent": 0.114265,
+      "yPercent": 0.682729,
+      "tags": [],
+      "aliases": [
+        "254l",
+        "c1.1.254l"
+      ]
+    },
+    {
+      "id": "c1.1.255p",
+      "building": "c1",
+      "floor": 1,
+      "code": "255P",
+      "label": "255P",
+      "xPercent": 0.157242,
+      "yPercent": 0.750732,
+      "tags": [],
+      "aliases": [
+        "255p",
+        "c1.1.255p"
+      ]
+    },
+    {
+      "id": "c1.1.256p",
+      "building": "c1",
+      "floor": 1,
+      "code": "256P",
+      "label": "256P",
+      "xPercent": 0.129243,
+      "yPercent": 0.769134,
+      "tags": [],
+      "aliases": [
+        "256p",
+        "c1.1.256p"
+      ]
+    },
+    {
+      "id": "c1.1.260p",
+      "building": "c1",
+      "floor": 1,
+      "code": "260P",
+      "label": "260P",
+      "xPercent": 0.154527,
+      "yPercent": 0.904104,
+      "tags": [],
+      "aliases": [
+        "260p",
+        "c1.1.260p"
+      ]
+    },
+    {
+      "id": "c1.1.261",
+      "building": "c1",
+      "floor": 1,
+      "code": "261",
+      "label": "261",
+      "xPercent": 0.127762,
+      "yPercent": 0.962162,
+      "tags": [],
+      "aliases": [
+        "261",
+        "c1.1.261"
+      ]
+    },
+    {
+      "id": "c1.1.318k",
+      "building": "c1",
+      "floor": 1,
+      "code": "318K",
+      "label": "318K",
+      "xPercent": 0.158237,
+      "yPercent": 0.921597,
+      "tags": [],
+      "aliases": [
+        "318k",
+        "c1.1.318k"
+      ]
+    },
+    {
+      "id": "c1.1.320",
+      "building": "c1",
+      "floor": 1,
+      "code": "320",
+      "label": "320",
+      "xPercent": 0.131352,
+      "yPercent": 0.961985,
+      "tags": [],
+      "aliases": [
+        "320",
+        "c1.1.320"
+      ]
+    },
+    {
+      "id": "c1.1.321",
+      "building": "c1",
+      "floor": 1,
+      "code": "321",
+      "label": "321",
+      "xPercent": 0.120148,
+      "yPercent": 0.929397,
+      "tags": [],
+      "aliases": [
+        "321",
+        "c1.1.321"
+      ]
+    },
+    {
+      "id": "c1.1.322",
+      "building": "c1",
+      "floor": 1,
+      "code": "322",
+      "label": "322",
+      "xPercent": 0.112881,
+      "yPercent": 0.896809,
+      "tags": [],
+      "aliases": [
+        "322",
+        "c1.1.322"
+      ]
+    },
+    {
+      "id": "c1.1.323",
+      "building": "c1",
+      "floor": 1,
+      "code": "323",
+      "label": "323",
+      "xPercent": 0.104262,
+      "yPercent": 0.864827,
+      "tags": [],
+      "aliases": [
+        "323",
+        "c1.1.323"
+      ]
+    },
+    {
+      "id": "c1.1.324l",
+      "building": "c1",
+      "floor": 1,
+      "code": "324L",
+      "label": "324L",
+      "xPercent": 0.145919,
+      "yPercent": 0.790236,
+      "tags": [],
+      "aliases": [
+        "324l",
+        "c1.1.324l"
+      ]
+    },
+    {
+      "id": "c1.1.325",
+      "building": "c1",
+      "floor": 1,
+      "code": "325",
+      "label": "325",
+      "xPercent": 0.095556,
+      "yPercent": 0.826939,
+      "tags": [],
+      "aliases": [
+        "325",
+        "c1.1.325"
+      ]
+    },
+    {
+      "id": "c1.1.326l",
+      "building": "c1",
+      "floor": 1,
+      "code": "326L",
+      "label": "326L",
+      "xPercent": 0.136327,
+      "yPercent": 0.73493,
+      "tags": [],
+      "aliases": [
+        "326l",
+        "c1.1.326l"
+      ]
+    },
+    {
+      "id": "c1.1.327",
+      "building": "c1",
+      "floor": 1,
+      "code": "327",
+      "label": "327",
+      "xPercent": 0.083444,
+      "yPercent": 0.772693,
+      "tags": [],
+      "aliases": [
+        "327",
+        "c1.1.327"
+      ]
+    },
+    {
+      "id": "c1.1.328l",
+      "building": "c1",
+      "floor": 1,
+      "code": "328L",
+      "label": "328L",
+      "xPercent": 0.127513,
+      "yPercent": 0.673642,
+      "tags": [],
+      "aliases": [
+        "328l",
+        "c1.1.328l"
+      ]
+    },
+    {
+      "id": "c1.1.329",
+      "building": "c1",
+      "floor": 1,
+      "code": "329",
+      "label": "329",
+      "xPercent": 0.07078,
+      "yPercent": 0.716503,
+      "tags": [],
+      "aliases": [
+        "329",
+        "c1.1.329"
+      ]
+    },
+    {
+      "id": "c1.1.330",
+      "building": "c1",
+      "floor": 1,
+      "code": "330",
+      "label": "330",
+      "xPercent": 0.062464,
+      "yPercent": 0.680609,
+      "tags": [],
+      "aliases": [
+        "330",
+        "c1.1.330"
+      ]
+    },
+    {
+      "id": "c1.1.332",
+      "building": "c1",
+      "floor": 1,
+      "code": "332",
+      "label": "332",
+      "xPercent": 0.05271,
+      "yPercent": 0.642165,
+      "tags": [],
+      "aliases": [
+        "332",
+        "c1.1.332"
+      ]
+    },
+    {
+      "id": "c1.1.333",
+      "building": "c1",
+      "floor": 1,
+      "code": "333",
+      "label": "333",
+      "xPercent": 0.04541,
+      "yPercent": 0.603595,
+      "tags": [],
+      "aliases": [
+        "333",
+        "c1.1.333"
+      ]
+    },
+    {
+      "id": "c1.1.334l",
+      "building": "c1",
+      "floor": 1,
+      "code": "334L",
+      "label": "334L",
+      "xPercent": 0.097589,
+      "yPercent": 0.513126,
+      "tags": [],
+      "aliases": [
+        "334l",
+        "c1.1.334l"
+      ]
+    },
+    {
+      "id": "c1.1.335",
+      "building": "c1",
+      "floor": 1,
+      "code": "335",
+      "label": "335",
+      "xPercent": 0.03798,
+      "yPercent": 0.567725,
+      "tags": [],
+      "aliases": [
+        "335",
+        "c1.1.335"
+      ]
+    },
+    {
+      "id": "c1.1.336",
+      "building": "c1",
+      "floor": 1,
+      "code": "336",
+      "label": "336",
+      "xPercent": 0.030248,
+      "yPercent": 0.528675,
+      "tags": [],
+      "aliases": [
+        "336",
+        "c1.1.336"
+      ]
+    },
+    {
+      "id": "c1.1.337",
+      "building": "c1",
+      "floor": 1,
+      "code": "337",
+      "label": "337",
+      "xPercent": 0.02098,
+      "yPercent": 0.488893,
+      "tags": [],
+      "aliases": [
+        "337",
+        "c1.1.337"
+      ]
+    },
+    {
+      "id": "c1.1.338",
+      "building": "c1",
+      "floor": 1,
+      "code": "338",
+      "label": "338",
+      "xPercent": 0.016989,
+      "yPercent": 0.420815,
+      "tags": [],
+      "aliases": [
+        "338",
+        "c1.1.338"
+      ]
+    },
+    {
+      "id": "c1.1.341p",
+      "building": "c1",
+      "floor": 1,
+      "code": "341P",
+      "label": "341P",
+      "xPercent": 0.073225,
+      "yPercent": 0.338575,
+      "tags": [],
+      "aliases": [
+        "341p",
+        "c1.1.341p"
+      ]
+    },
+    {
+      "id": "c1.1.342p",
+      "building": "c1",
+      "floor": 1,
+      "code": "342P",
+      "label": "342P",
+      "xPercent": 0.101548,
+      "yPercent": 0.314848,
+      "tags": [],
+      "aliases": [
+        "342p",
+        "c1.1.342p"
+      ]
+    },
+    {
+      "id": "c1.1.343p",
+      "building": "c1",
+      "floor": 1,
+      "code": "343P",
+      "label": "343P",
+      "xPercent": 0.13133,
+      "yPercent": 0.290918,
+      "tags": [],
+      "aliases": [
+        "343p",
+        "c1.1.343p"
+      ]
+    },
+    {
+      "id": "c1.1.346p",
+      "building": "c1",
+      "floor": 1,
+      "code": "346P",
+      "label": "346P",
+      "xPercent": 0.182883,
+      "yPercent": 0.25674,
+      "tags": [],
+      "aliases": [
+        "346p",
+        "c1.1.346p"
+      ]
+    },
+    {
+      "id": "c1.1.347p",
+      "building": "c1",
+      "floor": 1,
+      "code": "347P",
+      "label": "347P",
+      "xPercent": 0.210968,
+      "yPercent": 0.240433,
+      "tags": [],
+      "aliases": [
+        "347p",
+        "c1.1.347p"
+      ]
+    },
+    {
+      "id": "c1.1.348k",
+      "building": "c1",
+      "floor": 1,
+      "code": "348K",
+      "label": "348K",
+      "xPercent": 0.233116,
+      "yPercent": 0.226676,
+      "tags": [],
+      "aliases": [
+        "348k",
+        "c1.1.348k"
+      ]
+    },
+    {
+      "id": "c1.1.349p",
+      "building": "c1",
+      "floor": 1,
+      "code": "349P",
+      "label": "349P",
+      "xPercent": 0.25574,
+      "yPercent": 0.212036,
+      "tags": [],
+      "aliases": [
+        "349p",
+        "c1.1.349p"
+      ]
+    },
+    {
+      "id": "c1.1.350p",
+      "building": "c1",
+      "floor": 1,
+      "code": "350P",
+      "label": "350P",
+      "xPercent": 0.28774,
+      "yPercent": 0.233189,
+      "tags": [],
+      "aliases": [
+        "350p",
+        "c1.1.350p"
+      ]
+    },
+    {
+      "id": "c1.1.352k",
+      "building": "c1",
+      "floor": 1,
+      "code": "352K",
+      "label": "352K",
+      "xPercent": 0.252798,
+      "yPercent": 0.37293,
+      "tags": [],
+      "aliases": [
+        "352k",
+        "c1.1.352k"
+      ]
+    },
+    {
+      "id": "c1.1.353p",
+      "building": "c1",
+      "floor": 1,
+      "code": "353P",
+      "label": "353P",
+      "xPercent": 0.260076,
+      "yPercent": 0.44275,
+      "tags": [],
+      "aliases": [
+        "353p",
+        "c1.1.353p"
+      ]
+    },
+    {
+      "id": "c1.1.354k",
+      "building": "c1",
+      "floor": 1,
+      "code": "354K",
+      "label": "354K",
+      "xPercent": 0.301831,
+      "yPercent": 0.355892,
+      "tags": [],
+      "aliases": [
+        "354k",
+        "c1.1.354k"
+      ]
+    },
+    {
+      "id": "c1.1.355p",
+      "building": "c1",
+      "floor": 1,
+      "code": "355P",
+      "label": "355P",
+      "xPercent": 0.306957,
+      "yPercent": 0.424576,
+      "tags": [],
+      "aliases": [
+        "355p",
+        "c1.1.355p"
+      ]
+    },
+    {
+      "id": "c1.1.357k",
+      "building": "c1",
+      "floor": 1,
+      "code": "357K",
+      "label": "357K",
+      "xPercent": 0.273886,
+      "yPercent": 0.577898,
+      "tags": [],
+      "aliases": [
+        "357k",
+        "c1.1.357k"
+      ]
+    },
+    {
+      "id": "c1.1.358k",
+      "building": "c1",
+      "floor": 1,
+      "code": "358K",
+      "label": "358K",
+      "xPercent": 0.281035,
+      "yPercent": 0.669048,
+      "tags": [],
+      "aliases": [
+        "358k",
+        "c1.1.358k"
+      ]
+    },
+    {
+      "id": "c1.1.360k",
+      "building": "c1",
+      "floor": 1,
+      "code": "360K",
+      "label": "360K",
+      "xPercent": 0.318972,
+      "yPercent": 0.560304,
+      "tags": [],
+      "aliases": [
+        "360k",
+        "c1.1.360k"
+      ]
+    },
+    {
+      "id": "c1.1.361k",
+      "building": "c1",
+      "floor": 1,
+      "code": "361K",
+      "label": "361K",
+      "xPercent": 0.325406,
+      "yPercent": 0.650495,
+      "tags": [],
+      "aliases": [
+        "361k",
+        "c1.1.361k"
+      ]
+    },
+    {
+      "id": "c1.1.365p",
+      "building": "c1",
+      "floor": 1,
+      "code": "365P",
+      "label": "365P",
+      "xPercent": 0.304589,
+      "yPercent": 0.801545,
+      "tags": [],
+      "aliases": [
+        "365p",
+        "c1.1.365p"
+      ]
+    },
+    {
+      "id": "c1.1.366p",
+      "building": "c1",
+      "floor": 1,
+      "code": "366P",
+      "label": "366P",
+      "xPercent": 0.332187,
+      "yPercent": 0.790236,
+      "tags": [],
+      "aliases": [
+        "366p",
+        "c1.1.366p"
+      ]
+    },
+    {
+      "id": "c1.2.121k",
+      "building": "c1",
+      "floor": 2,
+      "code": "121K",
+      "label": "121K",
+      "xPercent": 0.388606,
+      "yPercent": 0.790489,
+      "tags": [],
+      "aliases": [
+        "121k",
+        "c1.2.121k"
+      ]
+    },
+    {
+      "id": "c1.2.122k",
+      "building": "c1",
+      "floor": 2,
+      "code": "122K",
+      "label": "122K",
+      "xPercent": 0.383091,
+      "yPercent": 0.708451,
+      "tags": [],
+      "aliases": [
+        "122k",
+        "c1.2.122k"
+      ]
+    },
+    {
+      "id": "c1.2.123k",
+      "building": "c1",
+      "floor": 2,
+      "code": "123K",
+      "label": "123K",
+      "xPercent": 0.379987,
+      "yPercent": 0.624016,
+      "tags": [],
+      "aliases": [
+        "123k",
+        "c1.2.123k"
+      ]
+    },
+    {
+      "id": "c1.2.124k",
+      "building": "c1",
+      "floor": 2,
+      "code": "124K",
+      "label": "124K",
+      "xPercent": 0.375856,
+      "yPercent": 0.54064,
+      "tags": [],
+      "aliases": [
+        "124k",
+        "c1.2.124k"
+      ]
+    },
+    {
+      "id": "c1.2.133",
+      "building": "c1",
+      "floor": 2,
+      "code": "133",
+      "label": "133",
+      "xPercent": 0.536883,
+      "yPercent": 0.704741,
+      "tags": [],
+      "aliases": [
+        "133",
+        "c1.2.133"
+      ]
+    },
+    {
+      "id": "c1.2.135",
+      "building": "c1",
+      "floor": 2,
+      "code": "135",
+      "label": "135",
+      "xPercent": 0.585634,
+      "yPercent": 0.808184,
+      "tags": [],
+      "aliases": [
+        "135",
+        "c1.2.135"
+      ]
+    },
+    {
+      "id": "c1.2.136",
+      "building": "c1",
+      "floor": 2,
+      "code": "136",
+      "label": "136",
+      "xPercent": 0.588727,
+      "yPercent": 0.762949,
+      "tags": [],
+      "aliases": [
+        "136",
+        "c1.2.136"
+      ]
+    },
+    {
+      "id": "c1.2.137p",
+      "building": "c1",
+      "floor": 2,
+      "code": "137P",
+      "label": "137P",
+      "xPercent": 0.588727,
+      "yPercent": 0.698152,
+      "tags": [],
+      "aliases": [
+        "137p",
+        "c1.2.137p"
+      ]
+    },
+    {
+      "id": "c1.2.138l",
+      "building": "c1",
+      "floor": 2,
+      "code": "138L",
+      "label": "138L",
+      "xPercent": 0.592036,
+      "yPercent": 0.614979,
+      "tags": [],
+      "aliases": [
+        "138l",
+        "c1.2.138l"
+      ]
+    },
+    {
+      "id": "c1.2.139",
+      "building": "c1",
+      "floor": 2,
+      "code": "139",
+      "label": "139",
+      "xPercent": 0.599574,
+      "yPercent": 0.536576,
+      "tags": [],
+      "aliases": [
+        "139",
+        "c1.2.139"
+      ]
+    },
+    {
+      "id": "c1.2.233l",
+      "building": "c1",
+      "floor": 2,
+      "code": "233L",
+      "label": "233L",
+      "xPercent": 0.576734,
+      "yPercent": 0.366544,
+      "tags": [],
+      "aliases": [
+        "233l",
+        "c1.2.233l"
+      ]
+    },
+    {
+      "id": "c1.2.234k",
+      "building": "c1",
+      "floor": 2,
+      "code": "234K",
+      "label": "234K",
+      "xPercent": 0.613449,
+      "yPercent": 0.371668,
+      "tags": [],
+      "aliases": [
+        "234k",
+        "c1.2.234k"
+      ]
+    },
+    {
+      "id": "c1.2.237l",
+      "building": "c1",
+      "floor": 2,
+      "code": "237L",
+      "label": "237L",
+      "xPercent": 0.379305,
+      "yPercent": 0.36248,
+      "tags": [],
+      "aliases": [
+        "237l",
+        "c1.2.237l"
+      ]
+    },
+    {
+      "id": "c1.2.239k",
+      "building": "c1",
+      "floor": 2,
+      "code": "239K",
+      "label": "239K",
+      "xPercent": 0.370362,
+      "yPercent": 0.553085,
+      "tags": [],
+      "aliases": [
+        "239k",
+        "c1.2.239k"
+      ]
+    },
+    {
+      "id": "c1.2.240k",
+      "building": "c1",
+      "floor": 2,
+      "code": "240K",
+      "label": "240K",
+      "xPercent": 0.425808,
+      "yPercent": 0.524258,
+      "tags": [],
+      "aliases": [
+        "240k",
+        "c1.2.240k"
+      ]
+    },
+    {
+      "id": "c1.2.241k",
+      "building": "c1",
+      "floor": 2,
+      "code": "241K",
+      "label": "241K",
+      "xPercent": 0.374212,
+      "yPercent": 0.642771,
+      "tags": [],
+      "aliases": [
+        "241k",
+        "c1.2.241k"
+      ]
+    },
+    {
+      "id": "c1.2.242k",
+      "building": "c1",
+      "floor": 2,
+      "code": "242K",
+      "label": "242K",
+      "xPercent": 0.425808,
+      "yPercent": 0.587086,
+      "tags": [],
+      "aliases": [
+        "242k",
+        "c1.2.242k"
+      ]
+    },
+    {
+      "id": "c1.2.243k",
+      "building": "c1",
+      "floor": 2,
+      "code": "243K",
+      "label": "243K",
+      "xPercent": 0.425808,
+      "yPercent": 0.652464,
+      "tags": [],
+      "aliases": [
+        "243k",
+        "c1.2.243k"
+      ]
+    },
+    {
+      "id": "c1.2.245",
+      "building": "c1",
+      "floor": 2,
+      "code": "245",
+      "label": "245",
+      "xPercent": 0.413306,
+      "yPercent": 0.769134,
+      "tags": [],
+      "aliases": [
+        "245",
+        "c1.2.245"
+      ]
+    },
+    {
+      "id": "c1.2.248l",
+      "building": "c1",
+      "floor": 2,
+      "code": "248L",
+      "label": "248L",
+      "xPercent": 0.550898,
+      "yPercent": 0.51979,
+      "tags": [],
+      "aliases": [
+        "248l",
+        "c1.2.248l"
+      ]
+    },
+    {
+      "id": "c1.2.249l",
+      "building": "c1",
+      "floor": 2,
+      "code": "249L",
+      "label": "249L",
+      "xPercent": 0.603997,
+      "yPercent": 0.553085,
+      "tags": [],
+      "aliases": [
+        "249l",
+        "c1.2.249l"
+      ]
+    },
+    {
+      "id": "c1.2.250l",
+      "building": "c1",
+      "floor": 2,
+      "code": "250L",
+      "label": "250L",
+      "xPercent": 0.548573,
+      "yPercent": 0.583022,
+      "tags": [],
+      "aliases": [
+        "250l",
+        "c1.2.250l"
+      ]
+    },
+    {
+      "id": "c1.2.251l",
+      "building": "c1",
+      "floor": 2,
+      "code": "251L",
+      "label": "251L",
+      "xPercent": 0.599498,
+      "yPercent": 0.639009,
+      "tags": [],
+      "aliases": [
+        "251l",
+        "c1.2.251l"
+      ]
+    },
+    {
+      "id": "c1.2.252k",
+      "building": "c1",
+      "floor": 2,
+      "code": "252K",
+      "label": "252K",
+      "xPercent": 0.54614,
+      "yPercent": 0.64787,
+      "tags": [],
+      "aliases": [
+        "252k",
+        "c1.2.252k"
+      ]
+    },
+    {
+      "id": "c1.2.254",
+      "building": "c1",
+      "floor": 2,
+      "code": "254",
+      "label": "254",
+      "xPercent": 0.562448,
+      "yPercent": 0.769134,
+      "tags": [],
+      "aliases": [
+        "254",
+        "c1.2.254"
+      ]
+    },
+    {
+      "id": "c1.2.255",
+      "building": "c1",
+      "floor": 2,
+      "code": "255",
+      "label": "255",
+      "xPercent": 0.594751,
+      "yPercent": 0.779685,
+      "tags": [],
+      "aliases": [
+        "255",
+        "c1.2.255"
+      ]
+    },
+    {
+      "id": "c1.2.319",
+      "building": "c1",
+      "floor": 2,
+      "code": "319",
+      "label": "319",
+      "xPercent": 0.43115,
+      "yPercent": 0.733794,
+      "tags": [],
+      "aliases": [
+        "319",
+        "c1.2.319"
+      ]
+    },
+    {
+      "id": "c1.2.320",
+      "building": "c1",
+      "floor": 2,
+      "code": "320",
+      "label": "320",
+      "xPercent": 0.412246,
+      "yPercent": 0.754014,
+      "tags": [],
+      "aliases": [
+        "320",
+        "c1.2.320"
+      ]
+    },
+    {
+      "id": "c1.2.321",
+      "building": "c1",
+      "floor": 2,
+      "code": "321",
+      "label": "321",
+      "xPercent": 0.389871,
+      "yPercent": 0.748763,
+      "tags": [],
+      "aliases": [
+        "321",
+        "c1.2.321"
+      ]
+    },
+    {
+      "id": "c1.2.324",
+      "building": "c1",
+      "floor": 2,
+      "code": "324",
+      "label": "324",
+      "xPercent": 0.426089,
+      "yPercent": 0.663495,
+      "tags": [],
+      "aliases": [
+        "324",
+        "c1.2.324"
+      ]
+    },
+    {
+      "id": "c1.2.326",
+      "building": "c1",
+      "floor": 2,
+      "code": "326",
+      "label": "326",
+      "xPercent": 0.425061,
+      "yPercent": 0.623586,
+      "tags": [],
+      "aliases": [
+        "326",
+        "c1.2.326"
+      ]
+    },
+    {
+      "id": "c1.2.328",
+      "building": "c1",
+      "floor": 2,
+      "code": "328",
+      "label": "328",
+      "xPercent": 0.424261,
+      "yPercent": 0.58595,
+      "tags": [],
+      "aliases": [
+        "328",
+        "c1.2.328"
+      ]
+    },
+    {
+      "id": "c1.2.330",
+      "building": "c1",
+      "floor": 2,
+      "code": "330",
+      "label": "330",
+      "xPercent": 0.422693,
+      "yPercent": 0.547531,
+      "tags": [],
+      "aliases": [
+        "330",
+        "c1.2.330"
+      ]
+    },
+    {
+      "id": "c1.2.332",
+      "building": "c1",
+      "floor": 2,
+      "code": "332",
+      "label": "332",
+      "xPercent": 0.422488,
+      "yPercent": 0.512116,
+      "tags": [],
+      "aliases": [
+        "332",
+        "c1.2.332"
+      ]
+    },
+    {
+      "id": "c1.2.334",
+      "building": "c1",
+      "floor": 2,
+      "code": "334",
+      "label": "334",
+      "xPercent": 0.417913,
+      "yPercent": 0.414908,
+      "tags": [],
+      "aliases": [
+        "334",
+        "c1.2.334"
+      ]
+    },
+    {
+      "id": "c1.2.335",
+      "building": "c1",
+      "floor": 2,
+      "code": "335",
+      "label": "335",
+      "xPercent": 0.41562,
+      "yPercent": 0.357532,
+      "tags": [],
+      "aliases": [
+        "335",
+        "c1.2.335"
+      ]
+    },
+    {
+      "id": "c1.2.336",
+      "building": "c1",
+      "floor": 2,
+      "code": "336",
+      "label": "336",
+      "xPercent": 0.365885,
+      "yPercent": 0.414908,
+      "tags": [],
+      "aliases": [
+        "336",
+        "c1.2.336"
+      ]
+    },
+    {
+      "id": "c1.2.337",
+      "building": "c1",
+      "floor": 2,
+      "code": "337",
+      "label": "337",
+      "xPercent": 0.362132,
+      "yPercent": 0.363691,
+      "tags": [],
+      "aliases": [
+        "337",
+        "c1.2.337"
+      ]
+    },
+    {
+      "id": "c1.2.338",
+      "building": "c1",
+      "floor": 2,
+      "code": "338",
+      "label": "338",
+      "xPercent": 0.415253,
+      "yPercent": 0.302857,
+      "tags": [],
+      "aliases": [
+        "338",
+        "c1.2.338"
+      ]
+    },
+    {
+      "id": "c1.2.339",
+      "building": "c1",
+      "floor": 2,
+      "code": "339",
+      "label": "339",
+      "xPercent": 0.359569,
+      "yPercent": 0.321486,
+      "tags": [],
+      "aliases": [
+        "339",
+        "c1.2.339"
+      ]
+    },
+    {
+      "id": "c1.2.340",
+      "building": "c1",
+      "floor": 2,
+      "code": "340",
+      "label": "340",
+      "xPercent": 0.354497,
+      "yPercent": 0.231826,
+      "tags": [],
+      "aliases": [
+        "340",
+        "c1.2.340"
+      ]
+    },
+    {
+      "id": "c1.2.344",
+      "building": "c1",
+      "floor": 2,
+      "code": "344",
+      "label": "344",
+      "xPercent": 0.461171,
+      "yPercent": 0.192321,
+      "tags": [],
+      "aliases": [
+        "344",
+        "c1.2.344"
+      ]
+    },
+    {
+      "id": "c1.2.346",
+      "building": "c1",
+      "floor": 2,
+      "code": "346",
+      "label": "346",
+      "xPercent": 0.522294,
+      "yPercent": 0.191715,
+      "tags": [],
+      "aliases": [
+        "346",
+        "c1.2.346"
+      ]
+    },
+    {
+      "id": "c1.2.352",
+      "building": "c1",
+      "floor": 2,
+      "code": "352",
+      "label": "352",
+      "xPercent": 0.570851,
+      "yPercent": 0.198935,
+      "tags": [],
+      "aliases": [
+        "352",
+        "c1.2.352"
+      ]
+    },
+    {
+      "id": "c1.2.354",
+      "building": "c1",
+      "floor": 2,
+      "code": "354",
+      "label": "354",
+      "xPercent": 0.625842,
+      "yPercent": 0.217387,
+      "tags": [],
+      "aliases": [
+        "354",
+        "c1.2.354"
+      ]
+    },
+    {
+      "id": "c1.2.358",
+      "building": "c1",
+      "floor": 2,
+      "code": "358",
+      "label": "358",
+      "xPercent": 0.617937,
+      "yPercent": 0.383279,
+      "tags": [],
+      "aliases": [
+        "358",
+        "c1.2.358"
+      ]
+    },
+    {
+      "id": "c1.2.359",
+      "building": "c1",
+      "floor": 2,
+      "code": "359",
+      "label": "359",
+      "xPercent": 0.564654,
+      "yPercent": 0.32184,
+      "tags": [],
+      "aliases": [
+        "359",
+        "c1.2.359"
+      ]
+    },
+    {
+      "id": "c1.2.360",
+      "building": "c1",
+      "floor": 2,
+      "code": "360",
+      "label": "360",
+      "xPercent": 0.563713,
+      "yPercent": 0.392695,
+      "tags": [],
+      "aliases": [
+        "360",
+        "c1.2.360"
+      ]
+    },
+    {
+      "id": "c1.2.362",
+      "building": "c1",
+      "floor": 2,
+      "code": "362",
+      "label": "362",
+      "xPercent": 0.558912,
+      "yPercent": 0.510021,
+      "tags": [],
+      "aliases": [
+        "362",
+        "c1.2.362"
+      ]
+    },
+    {
+      "id": "c1.2.364",
+      "building": "c1",
+      "floor": 2,
+      "code": "364",
+      "label": "364",
+      "xPercent": 0.557819,
+      "yPercent": 0.547026,
+      "tags": [],
+      "aliases": [
+        "364",
+        "c1.2.364"
+      ]
+    },
+    {
+      "id": "c1.2.366",
+      "building": "c1",
+      "floor": 2,
+      "code": "366",
+      "label": "366",
+      "xPercent": 0.556695,
+      "yPercent": 0.584006,
+      "tags": [],
+      "aliases": [
+        "366",
+        "c1.2.366"
+      ]
+    },
+    {
+      "id": "c1.2.368",
+      "building": "c1",
+      "floor": 2,
+      "code": "368",
+      "label": "368",
+      "xPercent": 0.555462,
+      "yPercent": 0.623031,
+      "tags": [],
+      "aliases": [
+        "368",
+        "c1.2.368"
+      ]
+    },
+    {
+      "id": "c1.2.370",
+      "building": "c1",
+      "floor": 2,
+      "code": "370",
+      "label": "370",
+      "xPercent": 0.555397,
+      "yPercent": 0.659708,
+      "tags": [],
+      "aliases": [
+        "370",
+        "c1.2.370"
+      ]
+    },
+    {
+      "id": "c1.2.374",
+      "building": "c1",
+      "floor": 2,
+      "code": "374",
+      "label": "374",
+      "xPercent": 0.568569,
+      "yPercent": 0.782108,
+      "tags": [],
+      "aliases": [
+        "374",
+        "c1.2.374"
+      ]
+    },
+    {
+      "id": "c1.2.375",
+      "building": "c1",
+      "floor": 2,
+      "code": "375",
+      "label": "375",
+      "xPercent": 0.586532,
+      "yPercent": 0.799904,
+      "tags": [],
+      "aliases": [
+        "375",
+        "c1.2.375"
+      ]
+    },
+    {
+      "id": "c1.2.376",
+      "building": "c1",
+      "floor": 2,
+      "code": "376",
+      "label": "376",
+      "xPercent": 0.609642,
+      "yPercent": 0.789858,
+      "tags": [],
+      "aliases": [
+        "376",
+        "c1.2.376"
+      ]
+    },
+    {
+      "id": "c1.3.121",
+      "building": "c1",
+      "floor": 3,
+      "code": "121",
+      "label": "121",
+      "xPercent": 0.725897,
+      "yPercent": 0.364903,
+      "tags": [],
+      "aliases": [
+        "121",
+        "c1.3.121"
+      ]
+    },
+    {
+      "id": "c1.3.125",
+      "building": "c1",
+      "floor": 3,
+      "code": "125",
+      "label": "125",
+      "xPercent": 0.735403,
+      "yPercent": 0.258355,
+      "tags": [],
+      "aliases": [
+        "125",
+        "c1.3.125"
+      ]
+    },
+    {
+      "id": "c1.3.126",
+      "building": "c1",
+      "floor": 3,
+      "code": "126",
+      "label": "126",
+      "xPercent": 0.687495,
+      "yPercent": 0.241367,
+      "tags": [],
+      "aliases": [
+        "126",
+        "c1.3.126"
+      ]
+    },
+    {
+      "id": "c1.3.128",
+      "building": "c1",
+      "floor": 3,
+      "code": "128",
+      "label": "128",
+      "xPercent": 0.769317,
+      "yPercent": 0.311339,
+      "tags": [],
+      "aliases": [
+        "128",
+        "c1.3.128"
+      ]
+    },
+    {
+      "id": "c1.3.187",
+      "building": "c1",
+      "floor": 3,
+      "code": "187",
+      "label": "187",
+      "xPercent": 0.687495,
+      "yPercent": 0.624016,
+      "tags": [],
+      "aliases": [
+        "187",
+        "c1.3.187"
+      ]
+    },
+    {
+      "id": "c1.3.188",
+      "building": "c1",
+      "floor": 3,
+      "code": "188",
+      "label": "188",
+      "xPercent": 0.692838,
+      "yPercent": 0.566362,
+      "tags": [],
+      "aliases": [
+        "188",
+        "c1.3.188"
+      ]
+    },
+    {
+      "id": "c1.3.232p",
+      "building": "c1",
+      "floor": 3,
+      "code": "232P",
+      "label": "232P",
+      "xPercent": 0.967492,
+      "yPercent": 0.435001,
+      "tags": [],
+      "aliases": [
+        "232p",
+        "c1.3.232p"
+      ]
+    },
+    {
+      "id": "c1.3.233p",
+      "building": "c1",
+      "floor": 3,
+      "code": "233P",
+      "label": "233P",
+      "xPercent": 0.90107,
+      "yPercent": 0.506134,
+      "tags": [],
+      "aliases": [
+        "233p",
+        "c1.3.233p"
+      ]
+    },
+    {
+      "id": "c1.3.234k",
+      "building": "c1",
+      "floor": 3,
+      "code": "234K",
+      "label": "234K",
+      "xPercent": 0.859931,
+      "yPercent": 0.506134,
+      "tags": [],
+      "aliases": [
+        "234k",
+        "c1.3.234k"
+      ]
+    },
+    {
+      "id": "c1.3.235l",
+      "building": "c1",
+      "floor": 3,
+      "code": "235L",
+      "label": "235L",
+      "xPercent": 0.716932,
+      "yPercent": 0.400419,
+      "tags": [],
+      "aliases": [
+        "235l",
+        "c1.3.235l"
+      ]
+    },
+    {
+      "id": "c1.3.236p",
+      "building": "c1",
+      "floor": 3,
+      "code": "236P",
+      "label": "236P",
+      "xPercent": 0.672625,
+      "yPercent": 0.351247,
+      "tags": [],
+      "aliases": [
+        "236p",
+        "c1.3.236p"
+      ]
+    },
+    {
+      "id": "c1.3.237p",
+      "building": "c1",
+      "floor": 3,
+      "code": "237P",
+      "label": "237P",
+      "xPercent": 0.668851,
+      "yPercent": 0.418745,
+      "tags": [],
+      "aliases": [
+        "237p",
+        "c1.3.237p"
+      ]
+    },
+    {
+      "id": "c1.3.240p",
+      "building": "c1",
+      "floor": 3,
+      "code": "240P",
+      "label": "240P",
+      "xPercent": 0.659367,
+      "yPercent": 0.567826,
+      "tags": [],
+      "aliases": [
+        "240p",
+        "c1.3.240p"
+      ]
+    },
+    {
+      "id": "c1.3.241p",
+      "building": "c1",
+      "floor": 3,
+      "code": "241P",
+      "label": "241P",
+      "xPercent": 0.706637,
+      "yPercent": 0.583022,
+      "tags": [],
+      "aliases": [
+        "241p",
+        "c1.3.241p"
+      ]
+    },
+    {
+      "id": "c1.3.243p",
+      "building": "c1",
+      "floor": 3,
+      "code": "243P",
+      "label": "243P",
+      "xPercent": 0.65357,
+      "yPercent": 0.659279,
+      "tags": [],
+      "aliases": [
+        "243p",
+        "c1.3.243p"
+      ]
+    },
+    {
+      "id": "c1.3.244p",
+      "building": "c1",
+      "floor": 3,
+      "code": "244P",
+      "label": "244P",
+      "xPercent": 0.700245,
+      "yPercent": 0.674071,
+      "tags": [],
+      "aliases": [
+        "244p",
+        "c1.3.244p"
+      ]
+    },
+    {
+      "id": "c1.3.246",
+      "building": "c1",
+      "floor": 3,
+      "code": "246",
+      "label": "246P",
+      "xPercent": 0.672939,
+      "yPercent": 0.804801,
+      "tags": [],
+      "aliases": [
+        "246",
+        "246p",
+        "c1.3.246"
+      ]
+    },
+    {
+      "id": "c1.3.247p",
+      "building": "c1",
+      "floor": 3,
+      "code": "247P",
+      "label": "247P",
+      "xPercent": 0.645113,
+      "yPercent": 0.794603,
+      "tags": [],
+      "aliases": [
+        "247p",
+        "c1.3.247p"
+      ]
+    },
+    {
+      "id": "c1.3.248p",
+      "building": "c1",
+      "floor": 3,
+      "code": "248P",
+      "label": "248P",
+      "xPercent": 0.890861,
+      "yPercent": 0.565403,
+      "tags": [],
+      "aliases": [
+        "248p",
+        "c1.3.248p"
+      ]
+    },
+    {
+      "id": "c1.3.254l",
+      "building": "c1",
+      "floor": 3,
+      "code": "254L",
+      "label": "254L",
+      "xPercent": 0.828743,
+      "yPercent": 0.680659,
+      "tags": [],
+      "aliases": [
+        "254l",
+        "c1.3.254l"
+      ]
+    },
+    {
+      "id": "c1.3.255l",
+      "building": "c1",
+      "floor": 3,
+      "code": "255L",
+      "label": "255L",
+      "xPercent": 0.858288,
+      "yPercent": 0.709259,
+      "tags": [],
+      "aliases": [
+        "255l",
+        "c1.3.255l"
+      ]
+    },
+    {
+      "id": "c1.3.264l",
+      "building": "c1",
+      "floor": 3,
+      "code": "264L",
+      "label": "264L",
+      "xPercent": 0.818772,
+      "yPercent": 0.901202,
+      "tags": [],
+      "aliases": [
+        "264l",
+        "c1.3.264l"
+      ]
+    },
+    {
+      "id": "c1.3.266p",
+      "building": "c1",
+      "floor": 3,
+      "code": "266P",
+      "label": "266P",
+      "xPercent": 0.815495,
+      "yPercent": 0.766837,
+      "tags": [],
+      "aliases": [
+        "266p",
+        "c1.3.266p"
+      ]
+    },
+    {
+      "id": "c1.3.267p",
+      "building": "c1",
+      "floor": 3,
+      "code": "267P",
+      "label": "267P",
+      "xPercent": 0.84398,
+      "yPercent": 0.788015,
+      "tags": [],
+      "aliases": [
+        "267p",
+        "c1.3.267p"
+      ]
+    },
+    {
+      "id": "c1.3.318p",
+      "building": "c1",
+      "floor": 3,
+      "code": "318P",
+      "label": "318P",
+      "xPercent": 0.673837,
+      "yPercent": 0.801545,
+      "tags": [],
+      "aliases": [
+        "318p",
+        "c1.3.318p"
+      ]
+    },
+    {
+      "id": "c1.3.319p",
+      "building": "c1",
+      "floor": 3,
+      "code": "319P",
+      "label": "319P",
+      "xPercent": 0.64666,
+      "yPercent": 0.79584,
+      "tags": [],
+      "aliases": [
+        "319p",
+        "c1.3.319p"
+      ]
+    },
+    {
+      "id": "c1.3.321p",
+      "building": "c1",
+      "floor": 3,
+      "code": "321P",
+      "label": "321P",
+      "xPercent": 0.684986,
+      "yPercent": 0.668896,
+      "tags": [],
+      "aliases": [
+        "321p",
+        "c1.3.321p"
+      ]
+    },
+    {
+      "id": "c1.3.322p",
+      "building": "c1",
+      "floor": 3,
+      "code": "322P",
+      "label": "322P",
+      "xPercent": 0.655571,
+      "yPercent": 0.657436,
+      "tags": [],
+      "aliases": [
+        "322p",
+        "c1.3.322p"
+      ]
+    },
+    {
+      "id": "c1.3.323k",
+      "building": "c1",
+      "floor": 3,
+      "code": "323K",
+      "label": "323K",
+      "xPercent": 0.692351,
+      "yPercent": 0.572647,
+      "tags": [],
+      "aliases": [
+        "323k",
+        "c1.3.323k"
+      ]
+    },
+    {
+      "id": "c1.3.324k",
+      "building": "c1",
+      "floor": 3,
+      "code": "324K",
+      "label": "324K",
+      "xPercent": 0.662222,
+      "yPercent": 0.561717,
+      "tags": [],
+      "aliases": [
+        "324k",
+        "c1.3.324k"
+      ]
+    },
+    {
+      "id": "c1.3.327k",
+      "building": "c1",
+      "floor": 3,
+      "code": "327K",
+      "label": "327K",
+      "xPercent": 0.669424,
+      "yPercent": 0.420588,
+      "tags": [],
+      "aliases": [
+        "327k",
+        "c1.3.327k"
+      ]
+    },
+    {
+      "id": "c1.3.328",
+      "building": "c1",
+      "floor": 3,
+      "code": "328",
+      "label": "328",
+      "xPercent": 0.715667,
+      "yPercent": 0.438914,
+      "tags": [],
+      "aliases": [
+        "328",
+        "c1.3.328"
+      ]
+    },
+    {
+      "id": "c1.3.331p",
+      "building": "c1",
+      "floor": 3,
+      "code": "331P",
+      "label": "331P",
+      "xPercent": 0.67402,
+      "yPercent": 0.352862,
+      "tags": [],
+      "aliases": [
+        "331p",
+        "c1.3.331p"
+      ]
+    },
+    {
+      "id": "c1.3.337",
+      "building": "c1",
+      "floor": 3,
+      "code": "337",
+      "label": "337",
+      "xPercent": 0.692351,
+      "yPercent": 0.236798,
+      "tags": [],
+      "aliases": [
+        "337",
+        "c1.3.337"
+      ]
+    },
+    {
+      "id": "c1.3.338",
+      "building": "c1",
+      "floor": 3,
+      "code": "338",
+      "label": "338",
+      "xPercent": 0.738864,
+      "yPercent": 0.256058,
+      "tags": [],
+      "aliases": [
+        "338",
+        "c1.3.338"
+      ]
+    },
+    {
+      "id": "c1.3.339",
+      "building": "c1",
+      "floor": 3,
+      "code": "339",
+      "label": "339",
+      "xPercent": 0.773113,
+      "yPercent": 0.280165,
+      "tags": [],
+      "aliases": [
+        "339",
+        "c1.3.339"
+      ]
+    },
+    {
+      "id": "c1.3.340",
+      "building": "c1",
+      "floor": 3,
+      "code": "340",
+      "label": "340",
+      "xPercent": 0.798408,
+      "yPercent": 0.295209,
+      "tags": [],
+      "aliases": [
+        "340",
+        "c1.3.340"
+      ]
+    },
+    {
+      "id": "c1.3.341",
+      "building": "c1",
+      "floor": 3,
+      "code": "341",
+      "label": "341",
+      "xPercent": 0.824352,
+      "yPercent": 0.31038,
+      "tags": [],
+      "aliases": [
+        "341",
+        "c1.3.341"
+      ]
+    },
+    {
+      "id": "c1.3.342",
+      "building": "c1",
+      "floor": 3,
+      "code": "342",
+      "label": "342",
+      "xPercent": 0.848609,
+      "yPercent": 0.331457,
+      "tags": [],
+      "aliases": [
+        "342",
+        "c1.3.342"
+      ]
+    },
+    {
+      "id": "c1.3.343",
+      "building": "c1",
+      "floor": 3,
+      "code": "343",
+      "label": "343",
+      "xPercent": 0.875266,
+      "yPercent": 0.352862,
+      "tags": [],
+      "aliases": [
+        "343",
+        "c1.3.343"
+      ]
+    },
+    {
+      "id": "c1.3.344",
+      "building": "c1",
+      "floor": 3,
+      "code": "344",
+      "label": "344",
+      "xPercent": 0.900659,
+      "yPercent": 0.369421,
+      "tags": [],
+      "aliases": [
+        "344",
+        "c1.3.344"
+      ]
+    },
+    {
+      "id": "c1.3.345",
+      "building": "c1",
+      "floor": 3,
+      "code": "345",
+      "label": "345",
+      "xPercent": 0.925489,
+      "yPercent": 0.388429,
+      "tags": [],
+      "aliases": [
+        "345",
+        "c1.3.345"
+      ]
+    },
+    {
+      "id": "c1.3.346",
+      "building": "c1",
+      "floor": 3,
+      "code": "346",
+      "label": "346",
+      "xPercent": 0.956526,
+      "yPercent": 0.421395,
+      "tags": [],
+      "aliases": [
+        "346",
+        "c1.3.346"
+      ]
+    },
+    {
+      "id": "c1.3.352",
+      "building": "c1",
+      "floor": 3,
+      "code": "352",
+      "label": "352",
+      "xPercent": 0.931274,
+      "yPercent": 0.599253,
+      "tags": [],
+      "aliases": [
+        "352",
+        "c1.3.352"
+      ]
+    },
+    {
+      "id": "c1.3.353",
+      "building": "c1",
+      "floor": 3,
+      "code": "353",
+      "label": "353",
+      "xPercent": 0.923293,
+      "yPercent": 0.63593,
+      "tags": [],
+      "aliases": [
+        "353",
+        "c1.3.353"
+      ]
+    },
+    {
+      "id": "c1.3.354",
+      "building": "c1",
+      "floor": 3,
+      "code": "354",
+      "label": "354",
+      "xPercent": 0.915593,
+      "yPercent": 0.672683,
+      "tags": [],
+      "aliases": [
+        "354",
+        "c1.3.354"
+      ]
+    },
+    {
+      "id": "c1.3.355",
+      "building": "c1",
+      "floor": 3,
+      "code": "355",
+      "label": "355",
+      "xPercent": 0.908358,
+      "yPercent": 0.70681,
+      "tags": [],
+      "aliases": [
+        "355",
+        "c1.3.355"
+      ]
+    },
+    {
+      "id": "c1.3.356",
+      "building": "c1",
+      "floor": 3,
+      "code": "356",
+      "label": "356",
+      "xPercent": 0.900713,
+      "yPercent": 0.741821,
+      "tags": [],
+      "aliases": [
+        "356",
+        "c1.3.356"
+      ]
+    },
+    {
+      "id": "c1.3.357p",
+      "building": "c1",
+      "floor": 3,
+      "code": "357P",
+      "label": "357P",
+      "xPercent": 0.89258,
+      "yPercent": 0.774106,
+      "tags": [],
+      "aliases": [
+        "357p",
+        "c1.3.357p"
+      ]
+    },
+    {
+      "id": "c1.3.358p",
+      "building": "c1",
+      "floor": 3,
+      "code": "358P",
+      "label": "358P",
+      "xPercent": 0.885497,
+      "yPercent": 0.81144,
+      "tags": [],
+      "aliases": [
+        "358p",
+        "c1.3.358p"
+      ]
+    },
+    {
+      "id": "c1.3.359p",
+      "building": "c1",
+      "floor": 3,
+      "code": "359P",
+      "label": "359P",
+      "xPercent": 0.8777,
+      "yPercent": 0.847132,
+      "tags": [],
+      "aliases": [
+        "359p",
+        "c1.3.359p"
+      ]
+    },
+    {
+      "id": "c1.3.360k",
+      "building": "c1",
+      "floor": 3,
+      "code": "360K",
+      "label": "360K",
+      "xPercent": 0.869091,
+      "yPercent": 0.8828,
+      "tags": [],
+      "aliases": [
+        "360k",
+        "c1.3.360k"
+      ]
+    },
+    {
+      "id": "c1.3.361",
+      "building": "c1",
+      "floor": 3,
+      "code": "361",
+      "label": "361",
+      "xPercent": 0.853032,
+      "yPercent": 0.947673,
+      "tags": [],
+      "aliases": [
+        "361",
+        "c1.3.361"
+      ]
+    },
+    {
+      "id": "c1.3.362p",
+      "building": "c1",
+      "floor": 3,
+      "code": "362P",
+      "label": "362P",
+      "xPercent": 0.814857,
+      "yPercent": 0.91617,
+      "tags": [],
+      "aliases": [
+        "362p",
+        "c1.3.362p"
+      ]
+    },
+    {
+      "id": "c1.3.365l",
+      "building": "c1",
+      "floor": 3,
+      "code": "365L",
+      "label": "365L",
+      "xPercent": 0.832874,
+      "yPercent": 0.807224,
+      "tags": [],
+      "aliases": [
+        "365l",
+        "c1.3.365l"
+      ]
+    },
+    {
+      "id": "c1.3.366l",
+      "building": "c1",
+      "floor": 3,
+      "code": "366L",
+      "label": "366L",
+      "xPercent": 0.841439,
+      "yPercent": 0.738691,
+      "tags": [],
+      "aliases": [
+        "366l",
+        "c1.3.366l"
+      ]
+    },
+    {
+      "id": "c1.3.367k",
+      "building": "c1",
+      "floor": 3,
+      "code": "367K",
+      "label": "367K",
+      "xPercent": 0.847062,
+      "yPercent": 0.668896,
+      "tags": [],
+      "aliases": [
+        "367k",
+        "c1.3.367k"
+      ]
+    },
+    {
+      "id": "c1.3.370l",
+      "building": "c1",
+      "floor": 3,
+      "code": "370L",
+      "label": "370L",
+      "xPercent": 0.875872,
+      "yPercent": 0.511965,
+      "tags": [],
+      "aliases": [
+        "370l",
+        "c1.3.370l"
+      ]
+    }
+  ]
+}
