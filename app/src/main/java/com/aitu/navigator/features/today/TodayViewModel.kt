@@ -12,6 +12,12 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import kotlinx.coroutines.flow.map
+import com.aitu.navigator.data.datastore.SettingsPrefs
+import com.aitu.navigator.features.schedule.notifications.NotificationScheduler
+import com.aitu.navigator.features.schedule.notifications.NotificationUtils
+import kotlinx.coroutines.flow.first
+
+import kotlinx.coroutines.flow.first
 sealed class TodayUiState {
     data object Loading : TodayUiState()
     data class Error(val message: String) : TodayUiState()
@@ -33,7 +39,7 @@ class TodayViewModel(app: Application) : AndroidViewModel(app) {
 
     private val repo = MikoRepository(app.applicationContext)
     private val prefs = AppPrefs(app.applicationContext)
-
+    private val settingsPrefs = SettingsPrefs(app.applicationContext)//testim
     // Загружаем Miko.json один раз
     private val groupsResult = MutableStateFlow<Result<List<GroupSchedule>>?>(null)
 
@@ -159,6 +165,14 @@ class TodayViewModel(app: Application) : AndroidViewModel(app) {
         }
         groupInput.value = ""
         resetToToday()
+    }
+    fun showTestNotificationNow() {
+        NotificationUtils.showLessonNotification(
+            context = getApplication(),
+            notificationId = 9999,
+            title = "Тест уведомления",
+            message = "Если это видно — всё работает"
+        )
     }
     // --- Notes (Заметка на дату) ---
     fun noteTextFlow(date: LocalDate) = prefs.noteFlow(date.toString())

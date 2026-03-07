@@ -115,10 +115,12 @@ private fun TodayContent(s: TodayUiState.Content, vm: TodayViewModel) {
                     onPrev = { vm.shiftDay(-1) },
                     onNext = { vm.shiftDay(+1) },
                     onGroupClick = { vm.changeGroup() },
+                    onTestNotifications = { vm.showTestNotificationNow() },
                     onNoteClick = { if (isToday) noteOpen = true },
                     showNote = isToday
                 )
                 Spacer(Modifier.height(8.dp))
+
 
                 OutlinedButton(
                     onClick = { vm.openFullSchedule() },
@@ -193,6 +195,7 @@ private fun TodayHeaderCard(
     onPrev: () -> Unit,
     onNext: () -> Unit,
     onGroupClick: () -> Unit,
+    onTestNotifications: () -> Unit,
     onNoteClick: () -> Unit,
     showNote: Boolean
 ) {
@@ -224,6 +227,13 @@ private fun TodayHeaderCard(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Группа: $group (нажми, чтобы сменить)")
+            }
+            Spacer(Modifier.height(8.dp))
+            OutlinedButton(
+                onClick = onTestNotifications,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Тест уведомления сейчас")
             }
 
             if (showNote) {

@@ -13,17 +13,44 @@ import com.aitu.navigator.core.navigation.AppNav
 import com.aitu.navigator.core.navigation.bottomScreens
 import com.aitu.navigator.ui.theme.AITUStudentNavigatorTheme
 import androidx.compose.foundation.layout.padding
+import com.aitu.navigator.features.schedule.notifications.NotificationUtils
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+
 class MainActivity : ComponentActivity() {
+
+    private val notificationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        NotificationUtils.createChannel(this)
+        requestNotificationPermissionIfNeeded()
+
         setContent {
             AITUStudentNavigatorTheme {
                 AppRoot()
             }
         }
     }
-}
 
+    private fun requestNotificationPermissionIfNeeded() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val granted = ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED
+
+            if (!granted) {
+                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
+    }
+}
 @Composable
 private fun AppRoot() {
     val navController = rememberNavController()
