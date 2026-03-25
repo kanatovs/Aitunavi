@@ -1,27 +1,72 @@
 package com.aitu.navigator.features.today
 
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
+import android.graphics.BitmapFactory
+import android.net.Uri
+import java.io.File
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.Locale
 import kotlin.math.abs
-import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.ui.graphics.Color
+//полный вывод сегодня
 @Composable
-fun TodayScreen(vm: TodayViewModel = viewModel()) {
+fun TodayScreen(
+    vm: TodayViewModel = viewModel(),
+    onOpenAnalytics: () -> Unit = {},
+    onOpenAtlas: (String) -> Unit = {}
+) {
     val state by vm.ui.collectAsState()
 
     when (val s = state) {
@@ -44,18 +89,30 @@ fun TodayScreen(vm: TodayViewModel = viewModel()) {
                 Button(
                     onClick = { vm.changeGroup() },
                     modifier = Modifier.fillMaxWidth()
-                ) { Text("Ввести другую группу") }
+                ) {
+                    Text("Ввести другую группу")
+                }
             }
         }
 
         is TodayUiState.Error -> ErrorBlock(s.message)
 
-        is TodayUiState.Content -> TodayContent(s, vm)
+        is TodayUiState.Content -> TodayContent(
+            s = s,
+            vm = vm,
+            onOpenAnalytics = onOpenAnalytics,
+            onOpenAtlas = onOpenAtlas
+        )
     }
 }
 
 @Composable
-private fun TodayContent(s: TodayUiState.Content, vm: TodayViewModel) {
+private fun TodayContent(
+    s: TodayUiState.Content,
+    vm: TodayViewModel,
+    onOpenAnalytics: () -> Unit,
+    onOpenAtlas: (String) -> Unit
+) {
     val currentTime by produceState(initialValue = LocalTime.now()) {
         while (true) {
             value = LocalTime.now()
@@ -66,24 +123,21 @@ private fun TodayContent(s: TodayUiState.Content, vm: TodayViewModel) {
     val selectedDate by vm.selectedDateFlow.collectAsState()
     val effectiveDate = selectedDate ?: LocalDate.now()
     val isToday = effectiveDate == LocalDate.now()
+    var showFullSchedule by remember { mutableStateOf(false) }
 
-    val effectiveDay = effectiveDate.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH) // Monday
+    val effectiveDay = effectiveDate.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH)
     val lessonsForDay = remember(s.groupData.schedule, effectiveDay) {
-        s.groupData.schedule.filter { it.day.trim().equals(effectiveDay.trim(), ignoreCase = true) }
+        s.groupData.schedule.filter {
+            it.day.trim().equals(effectiveDay.trim(), ignoreCase = true)
+        }
     }
     val slots = remember(lessonsForDay) { normalizeLessons(lessonsForDay) }
 
-    // Note dialog state
     var noteOpen by remember { mutableStateOf(false) }
     val noteText by vm.noteTextFlow(effectiveDate).collectAsState(initial = "")
+    val noteImages by vm.noteImagesFlow(effectiveDate).collectAsState(initial = emptyList())
 
-    // Details dialog state
     var detailsSlot by remember { mutableStateOf<NormalizedSlot?>(null) }
-    var atlasRoom by remember { mutableStateOf<String?>(null) }
-
-    val headerInfo = remember(isToday, slots, currentTime, effectiveDate) {
-        if (!isToday) null else calcHeaderInfo(slots, currentTime, effectiveDate)
-    }
 
     Box(
         Modifier
@@ -108,42 +162,54 @@ private fun TodayContent(s: TodayUiState.Content, vm: TodayViewModel) {
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             item {
-                TodayHeaderCard(
+                TodayTopSection(
                     date = effectiveDate,
                     group = s.group,
-                    headerInfo = headerInfo,
                     onPrev = { vm.shiftDay(-1) },
                     onNext = { vm.shiftDay(+1) },
-                    onGroupClick = { vm.changeGroup() },
-                    onTestNotifications = { vm.showTestNotificationNow() },
-                    onNoteClick = { if (isToday) noteOpen = true },
-                    showNote = isToday
+                    onTodayClick = { vm.resetToToday() },
+                    onGroupClick = { vm.changeGroup() }
                 )
-                Spacer(Modifier.height(8.dp))
-
-
-                OutlinedButton(
-                    onClick = { vm.openFullSchedule() },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text("Полное расписание")
-                }
             }
 
-            if (slots.isEmpty()) {
+            if (showFullSchedule) {
                 item {
-                    EmptyDayCard(
-                        onFullSchedule = { vm.openFullSchedule() }
-                    )
+                    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            OutlinedButton(
+                                onClick = { showFullSchedule = false },
+                                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 0.dp)
+                            ) {
+                                Text("◀")
+                            }
+
+                            Text(
+                                text = "Полное расписание",
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                        }
+
+                        FullScheduleInline(
+                            allLessons = s.groupData.schedule
+                        )
+                    }
                 }
             } else {
-                items(slots) { slot ->
-                    SlotCard(
-                        slot = slot,
+                item {
+                    TodaySchedulePanel(
+                        slots = slots,
                         now = currentTime,
                         dayDate = effectiveDate,
-                        onOpenDetails = { detailsSlot = slot },
-                        onOpenAtlas = { room -> atlasRoom = room }
+                        isToday = isToday,
+                        onOpenNote = { noteOpen = true },
+                        onOpenAnalytics = onOpenAnalytics,
+                        onOpenFull = { showFullSchedule = true },
+                        onOpenDetails = { detailsSlot = it },
+                        onOpenAtlas = onOpenAtlas
                     )
                 }
             }
@@ -154,7 +220,16 @@ private fun TodayContent(s: TodayUiState.Content, vm: TodayViewModel) {
         NoteDialog(
             date = effectiveDate,
             initialText = noteText,
-            onSave = { vm.saveNote(effectiveDate, it); noteOpen = false },
+            initialImagePaths = noteImages,
+            onSave = {
+                vm.saveNote(
+                    date = effectiveDate,
+                    text = it.text,
+                    keptImagePaths = it.keptImagePaths,
+                    newImageUris = it.newUris
+                )
+                noteOpen = false
+            },
             onDismiss = { noteOpen = false }
         )
     }
@@ -162,101 +237,322 @@ private fun TodayContent(s: TodayUiState.Content, vm: TodayViewModel) {
     detailsSlot?.let { slot ->
         LessonDetailsDialog(
             slot = slot,
-            onDismiss = { detailsSlot = null }
-        )
-    }
-
-    atlasRoom?.let { room ->
-        AlertDialog(
-            onDismissRequest = { atlasRoom = null },
-            title = { Text("Атлас (заглушка)") },
-            text = { Text("Открыть Атлас для аудитории: $room") },
-            confirmButton = {
-                Button(onClick = { atlasRoom = null }) { Text("Ок") }
-            }
-        )
-    }
-
-    // Full schedule dialog screen
-    if (vm.fullScheduleOpen.collectAsState().value) {
-        FullScheduleDialog(
-            group = s.group,
-            allLessons = s.groupData.schedule,
-            onDismiss = { vm.closeFullSchedule() }
+            onDismiss = { detailsSlot = null },
+            onOpenAtlas = onOpenAtlas
         )
     }
 }
-
+//первый верхний блок
 @Composable
-private fun TodayHeaderCard(
+private fun TodayTopSection(
     date: LocalDate,
     group: String,
-    headerInfo: HeaderInfo?,
     onPrev: () -> Unit,
     onNext: () -> Unit,
-    onGroupClick: () -> Unit,
-    onTestNotifications: () -> Unit,
-    onNoteClick: () -> Unit,
-    showNote: Boolean
+    onTodayClick: () -> Unit,
+    onGroupClick: () -> Unit
 ) {
     val dayName = date.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH)
     val formattedDate = date.format(DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH))
 
-    Card {
-        Column(Modifier.padding(16.dp)) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(22.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.82f)
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Text(
+                text = "Сегодня",
+                style = MaterialTheme.typography.headlineSmall
+            )
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Top
+            ) {
+                Column {
+                    Text(
+                        text = dayName,
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        text = formattedDate,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+
+                OutlinedButton(
+                    onClick = onGroupClick,
+                    modifier = Modifier.height(38.dp),
+                    contentPadding = PaddingValues(horizontal = 14.dp, vertical = 0.dp)
+                ) {
+                    Text(
+                        text = group,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(onClick = onPrev) { Text("◀") }
-
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(dayName, style = MaterialTheme.typography.titleMedium)
-                    Text(formattedDate, style = MaterialTheme.typography.bodySmall)
-                }
-
-                IconButton(onClick = onNext) { Text("▶") }
-            }
-
-            Spacer(Modifier.height(12.dp))
-
-            OutlinedButton(
-                onClick = onGroupClick,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Группа: $group (нажми, чтобы сменить)")
-            }
-            Spacer(Modifier.height(8.dp))
-            OutlinedButton(
-                onClick = onTestNotifications,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Тест уведомления сейчас")
-            }
-
-            if (showNote) {
-                Spacer(Modifier.height(8.dp))
-                Button(onClick = onNoteClick, modifier = Modifier.fillMaxWidth()) {
-                    Text("Заметка")
-                }
-            }
-
-            if (headerInfo != null) {
-                Spacer(Modifier.height(12.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                OutlinedButton(
+                    onClick = onPrev,
+                    modifier = Modifier
+                        .weight(0.8f)
+                        .height(42.dp),
+                    contentPadding = PaddingValues(0.dp)
                 ) {
-                    Text(headerInfo.title, style = MaterialTheme.typography.labelLarge)
-                    Text(headerInfo.subtitle, style = MaterialTheme.typography.bodyMedium)
+                    Text("◀")
+                }
+
+                Button(
+                    onClick = onTodayClick,
+                    modifier = Modifier
+                        .weight(2f)
+                        .height(42.dp),
+                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 0.dp)
+                ) {
+                    Text(
+                        text = "Сегодня",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+
+                OutlinedButton(
+                    onClick = onNext,
+                    modifier = Modifier
+                        .weight(0.8f)
+                        .height(42.dp),
+                    contentPadding = PaddingValues(0.dp)
+                ) {
+                    Text("▶")
                 }
             }
         }
     }
 }
+//расписание панель
+@Composable
+private fun TodaySchedulePanel(
+    slots: List<NormalizedSlot>,
+    now: LocalTime,
+    dayDate: LocalDate,
+    isToday: Boolean,
+    onOpenNote: () -> Unit,
+    onOpenAnalytics: () -> Unit,
+    onOpenFull: () -> Unit,
+    onOpenDetails: (NormalizedSlot) -> Unit,
+    onOpenAtlas: (String) -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(22.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.82f)
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Top
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text("Сегодня", style = MaterialTheme.typography.titleLarge)
 
+                    if (slots.isNotEmpty()) {
+                        Text(
+                            text = "${slots.first().discipline} • ${slots.first().time}",
+                            style = MaterialTheme.typography.bodySmall,
+                            maxLines = 1
+                        )
+                    }
+                }
+
+                OutlinedButton(
+                    onClick = onOpenFull,
+                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 0.dp)
+                ) {
+                    Text("Полное")
+                }
+            }
+
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                if (isToday) {
+                    OutlinedButton(
+                        onClick = onOpenNote,
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 0.dp),
+                        modifier = Modifier.height(36.dp)
+                    ) {
+                        Text("Заметка", style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+                OutlinedButton(
+                    onClick = onOpenAnalytics,
+                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 0.dp),
+                    modifier = Modifier.height(36.dp)
+                ) {
+                    Text("Аналитика", style = MaterialTheme.typography.bodyMedium)
+                }
+            }
+
+            if (slots.isEmpty()) {
+                Text("На выбранный день занятий нет")
+            } else {
+                slots.forEachIndexed { index, slot ->
+                    TodayLessonRow(
+                        slot = slot,
+                        now = now,
+                        dayDate = dayDate,
+                        onOpenDetails = { onOpenDetails(slot) },
+                        onOpenAtlas = onOpenAtlas
+                    )
+
+                    if (index != slots.lastIndex) {
+                        HorizontalDivider(
+                            modifier = Modifier.padding(top = 2.dp)
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+//Уроки время и апдейт времени
+@Composable
+private fun TodayLessonRow(
+    slot: NormalizedSlot,
+    now: LocalTime,
+    dayDate: LocalDate,
+    onOpenDetails: () -> Unit,
+    onOpenAtlas: (String) -> Unit
+) {
+    val status = getLessonStatus(
+        timeRange = slot.time,
+        nowTime = now,
+        dayDate = dayDate
+    )
+
+    val statusText = when (status) {
+        LessonStatus.NOW -> "NOW"
+        LessonStatus.SOON -> "SOON"
+        LessonStatus.COMPLETED -> "DONE"
+        LessonStatus.UPCOMING -> ""
+    }
+
+    val statusColor = when (status) {
+        LessonStatus.NOW -> MaterialTheme.colorScheme.primary
+        LessonStatus.SOON -> MaterialTheme.colorScheme.tertiary
+        LessonStatus.COMPLETED -> MaterialTheme.colorScheme.outline
+        LessonStatus.UPCOMING -> MaterialTheme.colorScheme.onSurfaceVariant
+    }
+
+    val firstLocation = slot.locations.firstOrNull()
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 6.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalAlignment = Alignment.Top
+        ) {
+            Text(
+                text = slot.time,
+                modifier = Modifier.width(96.dp),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(2.dp)
+            ) {
+                Text(
+                    text = slot.discipline,
+                    style = MaterialTheme.typography.titleMedium
+                )
+
+                firstLocation?.let { loc ->
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        TextButton(
+                            onClick = { onOpenAtlas(loc.classroom) },
+                            modifier = Modifier
+                                .height(28.dp)
+                                .background(
+                                    color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.55f),
+                                    shape = RoundedCornerShape(14.dp)
+                                )
+                                .border(
+                                    1.dp,
+                                    MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f),
+                                    RoundedCornerShape(14.dp)
+                                ),
+                            contentPadding = PaddingValues(horizontal = 10.dp, vertical = 0.dp)
+                        ) {
+                            Text(
+                                text = loc.classroom,
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
+
+                        Text(
+                            text = loc.lecturer,
+                            style = MaterialTheme.typography.bodySmall,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                }
+            }
+
+            Column(
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                if (statusText.isNotBlank()) {
+                    Text(
+                        text = statusText,
+                        color = statusColor,
+                        style = MaterialTheme.typography.labelSmall
+                    )
+                }
+
+                TextButton(
+                    onClick = onOpenDetails,
+                    contentPadding = PaddingValues(0.dp)
+                ) {
+                    Text(
+                        "›",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.outline
+                    )
+                }
+            }
+        }
+    }
+}
 @Composable
 private fun EmptyDayCard(onFullSchedule: () -> Unit) {
     Card {
@@ -273,58 +569,11 @@ private fun EmptyDayCard(onFullSchedule: () -> Unit) {
 }
 
 @Composable
-private fun SlotCard(
+private fun LessonDetailsDialog(
     slot: NormalizedSlot,
-    now: LocalTime,
-    dayDate: LocalDate,
-    onOpenDetails: () -> Unit,
+    onDismiss: () -> Unit,
     onOpenAtlas: (String) -> Unit
 ) {
-    val status = getLessonStatus(
-        timeRange = slot.time,
-        nowTime = now,
-        dayDate = dayDate
-    )
-
-    val statusColor = when (status) {
-        LessonStatus.NOW -> MaterialTheme.colorScheme.primary
-        LessonStatus.SOON -> MaterialTheme.colorScheme.tertiary
-        LessonStatus.COMPLETED -> MaterialTheme.colorScheme.outline
-        LessonStatus.UPCOMING -> MaterialTheme.colorScheme.secondary
-    }
-
-    Card(onClick = onOpenDetails) {
-        Column(Modifier.padding(16.dp)) {
-
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(slot.discipline, style = MaterialTheme.typography.titleMedium)
-                Text(status.name, color = statusColor)
-            }
-
-            Spacer(Modifier.height(6.dp))
-            Text("Время: ${slot.time}")
-            Text("Тип: ${slot.type}")
-
-            Spacer(Modifier.height(10.dp))
-            Text("Аудитории:", style = MaterialTheme.typography.labelLarge)
-
-            slot.locations.forEach { loc ->
-                TextButton(
-                    onClick = { onOpenAtlas(loc.classroom) },
-                    contentPadding = PaddingValues(0.dp)
-                ) {
-                    Text("• ${loc.classroom} — ${loc.lecturer}")
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun LessonDetailsDialog(slot: NormalizedSlot, onDismiss: () -> Unit) {
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text("Детали пары") },
@@ -336,11 +585,26 @@ private fun LessonDetailsDialog(slot: NormalizedSlot, onDismiss: () -> Unit) {
                 Text("Время: ${slot.time}")
                 Text("Тип: ${slot.type}")
                 Spacer(Modifier.height(10.dp))
+                slot.locations.firstOrNull()?.classroom?.let { room ->
+                    OutlinedButton(
+                        onClick = { onOpenAtlas(room) },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("Открыть карту кабинетов")
+                    }
+                    Spacer(Modifier.height(10.dp))
+                }
                 Text("Аудитории:")
-                slot.locations.forEach { Text("• ${it.classroom} — ${it.lecturer}") }
+                slot.locations.forEach {
+                    Text("• ${it.classroom} — ${it.lecturer}")
+                }
             }
         },
-        confirmButton = { Button(onClick = onDismiss) { Text("Закрыть") } }
+        confirmButton = {
+            Button(onClick = onDismiss) {
+                Text("Закрыть")
+            }
+        }
     )
 }
 
@@ -348,100 +612,206 @@ private fun LessonDetailsDialog(slot: NormalizedSlot, onDismiss: () -> Unit) {
 private fun NoteDialog(
     date: LocalDate,
     initialText: String,
-    onSave: (String) -> Unit,
+    initialImagePaths: List<String>,
+    onSave: (NoteDialogResult) -> Unit,
     onDismiss: () -> Unit
 ) {
+    val context = LocalContext.current
     var text by remember(initialText) { mutableStateOf(initialText) }
+    var keptPaths by remember(initialImagePaths) { mutableStateOf(initialImagePaths) }
+    var newUris by remember { mutableStateOf<List<Uri>>(emptyList()) }
+    var previewPath by remember { mutableStateOf<String?>(null) }
+    var previewUri by remember { mutableStateOf<Uri?>(null) }
+    val picker = rememberLauncherForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris ->
+        if (uris.isNotEmpty()) newUris = (newUris + uris).take(10)
+    }
 
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text("Заметка (${date})") },
         text = {
-            OutlinedTextField(
-                value = text,
-                onValueChange = { text = it },
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("Введите заметку…") }
-            )
-        },
-        confirmButton = {
-            Button(onClick = { onSave(text) }) { Text("Сохранить") }
-        },
-        dismissButton = {
-            OutlinedButton(onClick = onDismiss) { Text("Отмена") }
-        }
-    )
-}
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                OutlinedTextField(
+                    value = text,
+                    onValueChange = { text = it },
+                    modifier = Modifier.fillMaxWidth(),
+                    placeholder = { Text("Введите заметку…") }
+                )
 
-@Composable
-private fun FullScheduleDialog(
-    group: String,
-    allLessons: List<com.aitu.navigator.data.model.Lesson>,
-    onDismiss: () -> Unit
-) {
-    val days = listOf("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
-
-    var selectedDay by remember {
-        mutableStateOf(java.time.LocalDate.now().dayOfWeek.getDisplayName(java.time.format.TextStyle.FULL, java.util.Locale.ENGLISH))
-    }
-
-    val lessonsForDay = remember(allLessons, selectedDay) {
-        allLessons.filter { it.day.trim().equals(selectedDay.trim(), ignoreCase = true) }
-    }
-
-    val slots = remember(lessonsForDay) { normalizeLessons(lessonsForDay) }
-
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text("Полное расписание:\n$group") },
-        text = {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .heightIn(min = 300.dp, max = 520.dp) // <-- главное: контент не вылезает
-            ) {
-
-                // ✅ ДНИ НЕДЕЛИ С ГОРИЗОНТАЛЬНЫМ СКРОЛЛОМ
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    days.forEach { d ->
-                        FilterChip(
-                            selected = selectedDay.equals(d, ignoreCase = true),
-                            onClick = { selectedDay = d },
-                            label = { Text(d.take(3)) }
-                        )
-                    }
+                Text("Изображения: ${keptPaths.size + newUris.size}")
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(onClick = { picker.launch("image/*") }) { Text("Добавить") }
+                    OutlinedButton(onClick = { /* TODO: вставка из буфера */ }) { Text("Вставить") }
                 }
 
-                Spacer(Modifier.height(12.dp))
-
-                // ✅ СПИСОК ПАР С ВЕРТИКАЛЬНЫМ СКРОЛЛОМ
-                if (slots.isEmpty()) {
-                    Text("Пусто")
+                val imageItems = keptPaths + newUris.map { it.toString() }
+                if (imageItems.isEmpty()) {
+                    Text("Пока нет изображений.")
                 } else {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalArrangement = Arrangement.spacedBy(10.dp)
-                    ) {
-                        items(slots) { slot ->
-                            Column {
-                                Text("${slot.time} — ${slot.discipline}", style = MaterialTheme.typography.bodyMedium)
-                                Text("(${slot.type})", style = MaterialTheme.typography.bodySmall)
-                            }
+                    imageItems.forEach { item ->
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = if (item.startsWith("/")) File(item).name else "new image",
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .clickable {
+                                        if (item.startsWith("/")) previewPath = item else previewUri = Uri.parse(item)
+                                    },
+                                maxLines = 1
+                            )
+                            TextButton(onClick = {
+                                if (item.startsWith("/")) {
+                                    keptPaths = keptPaths.filterNot { it == item }
+                                } else {
+                                    newUris = newUris.filterNot { it.toString() == item }
+                                }
+                            }) { Text("Удалить") }
                         }
                     }
                 }
             }
         },
         confirmButton = {
-            Button(onClick = onDismiss) { Text("Закрыть") }
+            Button(onClick = { onSave(NoteDialogResult(text, keptPaths, newUris)) }) {
+                Text("Сохранить")
+            }
+        },
+        dismissButton = {
+            OutlinedButton(onClick = onDismiss) {
+                Text("Отмена")
+            }
         }
     )
+
+    if (previewPath != null || previewUri != null) {
+        AlertDialog(
+            onDismissRequest = {
+                previewPath = null
+                previewUri = null
+            },
+            title = { Text("Просмотр") },
+            text = {
+                when {
+                    previewPath != null -> {
+                        val bitmap = remember(previewPath) { BitmapFactory.decodeFile(previewPath) }
+                        if (bitmap != null) {
+                            Image(
+                                bitmap = bitmap.asImageBitmap(),
+                                contentDescription = null,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        } else {
+                            Text("Не удалось открыть файл")
+                        }
+                    }
+                    previewUri != null -> {
+                        val bitmap = remember(previewUri) {
+                            context.contentResolver.openInputStream(previewUri!!)?.use {
+                                BitmapFactory.decodeStream(it)
+                            }
+                        }
+                        if (bitmap != null) {
+                            Image(
+                                bitmap = bitmap.asImageBitmap(),
+                                contentDescription = null,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        } else {
+                            Text("Не удалось открыть файл")
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    previewPath = null
+                    previewUri = null
+                }) {
+                    Text("Закрыть")
+                }
+            }
+        )
+    }
 }
+
+private data class NoteDialogResult(
+    val text: String,
+    val keptImagePaths: List<String>,
+    val newUris: List<Uri>
+)
+
+@Composable
+private fun FullScheduleInline(
+    allLessons: List<com.aitu.navigator.data.model.Lesson>
+) {
+    val days = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+
+    var selectedDay by remember {
+        mutableStateOf(
+            LocalDate.now().dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH)
+        )
+    }
+
+    val lessonsForDay = remember(allLessons, selectedDay) {
+        allLessons.filter { it.day.trim().equals(selectedDay.trim(), ignoreCase = true) }
+    }
+
+    val slots = remember(lessonsForDay) {
+        normalizeLessons(lessonsForDay)
+    }
+
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState()),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            days.forEach { day ->
+                FilterChip(
+                    selected = selectedDay.equals(day, ignoreCase = true),
+                    onClick = { selectedDay = day },
+                    label = { Text(day.take(3)) }
+                )
+            }
+        }
+
+        if (slots.isEmpty()) {
+            Card(modifier = Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(16.dp)) {
+                    Text("Пусто", style = MaterialTheme.typography.titleMedium)
+                    Spacer(Modifier.height(6.dp))
+                    Text("На этот день занятий нет")
+                }
+            }
+        } else {
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                slots.forEach { slot ->
+                    Card(modifier = Modifier.fillMaxWidth()) {
+                        Column(Modifier.padding(16.dp)) {
+                            Text(slot.discipline, style = MaterialTheme.typography.titleMedium)
+                            Spacer(Modifier.height(4.dp))
+                            Text("Время: ${slot.time}")
+                            Text("Тип: ${slot.type}")
+                            Spacer(Modifier.height(6.dp))
+                            slot.locations.forEach { loc ->
+                                Text("• ${loc.classroom} — ${loc.lecturer}")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @Composable
 private fun GroupPicker(
     input: String,
@@ -481,7 +851,9 @@ private fun GroupPicker(
             onClick = { onSave(text) },
             enabled = text.isNotBlank() && isFound == true,
             modifier = Modifier.fillMaxWidth()
-        ) { Text("Сохранить") }
+        ) {
+            Text("Сохранить")
+        }
     }
 }
 
@@ -499,44 +871,6 @@ private fun CenterText(text: String) {
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Text(text)
     }
-}
-
-private data class HeaderInfo(val title: String, val subtitle: String)
-
-private fun calcHeaderInfo(
-    slots: List<NormalizedSlot>,
-    now: LocalTime,
-    dayDate: LocalDate
-): HeaderInfo? {
-    if (dayDate != LocalDate.now()) return null
-
-    val nowSlot = slots.firstOrNull {
-        getLessonStatus(it.time, nowTime = now, dayDate = dayDate) == LessonStatus.NOW
-    }
-    if (nowSlot != null) {
-        val end = runCatching { LocalTime.parse(nowSlot.time.substringAfter("-")) }.getOrNull()
-        if (end != null) {
-            val mins = java.time.Duration.between(now, end).toMinutes().coerceAtLeast(0)
-            return HeaderInfo("NOW", "До конца $mins мин")
-        }
-        return HeaderInfo("NOW", "Идёт пара")
-    }
-
-    val next = slots
-        .mapNotNull { s ->
-            val start = runCatching { LocalTime.parse(s.time.substringBefore("-")) }.getOrNull()
-                ?: return@mapNotNull null
-            if (start.isAfter(now)) start else null
-        }
-        .minOrNull()
-
-    if (next != null) {
-        val mins = java.time.Duration.between(now, next).toMinutes().coerceAtLeast(0)
-        val title = if (mins <= 60) "SOON" else "UPCOMING"
-        return HeaderInfo(title, "До начала $mins мин")
-    }
-
-    return HeaderInfo("COMPLETED", "Все пары завершены")
 }
 
 private fun getLessonStatus(
@@ -564,4 +898,6 @@ private fun getLessonStatus(
     }
 }
 
-private enum class LessonStatus { NOW, SOON, COMPLETED, UPCOMING }
+private enum class LessonStatus {
+    NOW, SOON, COMPLETED, UPCOMING
+}

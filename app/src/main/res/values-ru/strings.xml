@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AITU Student Navigator</string>
+    <string name="settings_title">Настройки</string>
+    <string name="settings_language">Язык</string>
+    <string name="settings_theme">Тема</string>
+    <string name="settings_fx">FX</string>
+    <string name="settings_performance">Производительность</string>
+    <string name="settings_notifications">Напоминания</string>
+    <string name="settings_creator">Создатель</string>
+    <string name="settings_partners">Партнёры</string>
+
+    <string name="lang_ru">RU</string>
+    <string name="lang_en">EN</string>
+
+    <string name="theme_classic">Классическая</string>
+    <string name="theme_violet">Фиолетовая</string>
+    <string name="theme_obsidian">Обсидиан</string>
+    <string name="theme_nebula">Туманность</string>
+    <string name="theme_rose_neon">Роуз неон</string>
+    <string name="theme_sunset">Закат</string>
+    <string name="theme_mono">Моно</string>
+    <string name="theme_cyber_mint">Кибер минт</string>
+    <string name="theme_deep_space">Глубокий космос</string>
+    <string name="theme_silver">Серебро</string>
+    <string name="theme_gray">Серая</string>
+    <string name="theme_black">Черная</string>
+    <string name="nav_today">Сегодня</string>
+    <string name="nav_chronos">Chronos</string>
+    <string name="nav_atlas">Атлас</string>
+    <string name="nav_search">Поиск</string>
+    <string name="nav_settings">Настройки</string>
+</resources>

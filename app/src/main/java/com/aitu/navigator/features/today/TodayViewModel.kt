@@ -1,6 +1,7 @@
 package com.aitu.navigator.features.today
 
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.aitu.navigator.data.datastore.AppPrefs
@@ -16,8 +17,7 @@ import com.aitu.navigator.data.datastore.SettingsPrefs
 import com.aitu.navigator.features.schedule.notifications.NotificationScheduler
 import com.aitu.navigator.features.schedule.notifications.NotificationUtils
 import kotlinx.coroutines.flow.first
-
-import kotlinx.coroutines.flow.first
+import java.io.File
 sealed class TodayUiState {
     data object Loading : TodayUiState()
     data class Error(val message: String) : TodayUiState()
@@ -166,20 +166,26 @@ class TodayViewModel(app: Application) : AndroidViewModel(app) {
         groupInput.value = ""
         resetToToday()
     }
-    fun showTestNotificationNow() {
-        NotificationUtils.showLessonNotification(
-            context = getApplication(),
-            notificationId = 9999,
-            title = "Тест уведомления",
-            message = "Если это видно — всё работает"
-        )
-    }
     // --- Notes (Заметка на дату) ---
     fun noteTextFlow(date: LocalDate) = prefs.noteFlow(date.toString())
+    fun noteImagesFlow(date: LocalDate) = prefs.noteImagesFlow(date.toString())
 
-    fun saveNote(date: LocalDate, text: String) {
+    fun saveNote(
+        date: LocalDate,
+        text: String,
+        keptImagePaths: List<String>,
+        newImageUris: List<Uri>
+    ) {
         viewModelScope.launch {
-            prefs.setNote(date.toString(), text)
+            val savedNewPaths = newImageUris.mapNotNull { copyImageToNotesDir(it) }
+            val allPaths = (keptImagePaths + savedNewPaths).distinct()
+
+            if (text.isBlank() && allPaths.isEmpty()) {
+                prefs.clearNote(date.toString())
+            } else {
+                prefs.setNote(date.toString(), text)
+                prefs.setNoteImages(date.toString(), allPaths)
+            }
         }
     }
     // ---------- helpers ----------
@@ -206,4 +212,24 @@ class TodayViewModel(app: Application) : AndroidViewModel(app) {
             .takeIf { it.isNotBlank() }
     }
 
+    private fun copyImageToNotesDir(uri: Uri): String? {
+        return try {
+            val context = getApplication<Application>().applicationContext
+            val notesDir = File(context.filesDir, "notes_images").apply { mkdirs() }
+            val ext = when (context.contentResolver.getType(uri)) {
+                "image/png" -> "png"
+                "image/webp" -> "webp"
+                else -> "jpg"
+            }
+            val file = File(notesDir, "note_${System.currentTimeMillis()}_${(1000..9999).random()}.$ext")
+            context.contentResolver.openInputStream(uri)?.use { input ->
+                file.outputStream().use { output ->
+                    input.copyTo(output)
+                }
+            } ?: return null
+            file.absolutePath
+        } catch (_: Exception) {
+            null
+        }
+    }
 }

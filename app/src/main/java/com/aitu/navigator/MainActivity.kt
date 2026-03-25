@@ -1,25 +1,55 @@
 package com.aitu.navigator
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material3.*
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.border
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.aitu.navigator.core.navigation.AppNav
 import com.aitu.navigator.core.navigation.bottomScreens
-import com.aitu.navigator.ui.theme.AITUStudentNavigatorTheme
-import androidx.compose.foundation.layout.padding
 import com.aitu.navigator.features.schedule.notifications.NotificationUtils
-import android.Manifest
-import android.content.pm.PackageManager
-import android.os.Build
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
-
+import com.aitu.navigator.ui.theme.AITUStudentNavigatorTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.aitu.navigator.features.settings.AppSettingsViewModel
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
+import com.aitu.navigator.data.datastore.SettingsPrefs
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.first
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 class MainActivity : ComponentActivity() {
 
     private val notificationPermissionLauncher =
@@ -30,9 +60,20 @@ class MainActivity : ComponentActivity() {
 
         NotificationUtils.createChannel(this)
         requestNotificationPermissionIfNeeded()
+        lifecycleScope.launch {
+            val settings = SettingsPrefs(applicationContext).settingsFlow.first()
 
+            AppCompatDelegate.setApplicationLocales(
+                LocaleListCompat.forLanguageTags(settings.language)
+            )
+        }
         setContent {
-            AITUStudentNavigatorTheme {
+            val appSettingsVm: AppSettingsViewModel = viewModel()
+            val settings by appSettingsVm.settings.collectAsState()
+
+            AITUStudentNavigatorTheme(
+                themeName = settings.theme
+            ) {
                 AppRoot()
             }
         }
@@ -59,20 +100,66 @@ private fun AppRoot() {
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
-                bottomScreens.forEach { screen ->
-                    NavigationBarItem(
-                        selected = currentRoute == screen.route,
-                        onClick = {
-                            navController.navigate(screen.route) {
-                                popUpTo(navController.graph.startDestinationId) { saveState = true }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        },
-                        icon = { Icon(screen.icon, contentDescription = screen.title) },
-                        label = { Text(screen.title) }
-                    )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .navigationBarsPadding()
+                    .padding(horizontal = 12.dp, vertical = 10.dp)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(28.dp))
+                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                        .border(
+                            width = 1.dp,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.10f),
+                            shape = RoundedCornerShape(28.dp)
+                        )
+                        .padding(horizontal = 8.dp, vertical = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    bottomScreens.forEach { screen ->
+                        val selected = currentRoute == screen.route
+
+                        Column(
+                            modifier = Modifier
+                                .weight(1f)
+                                .clip(RoundedCornerShape(20.dp))
+                                .background(
+                                    if (selected) MaterialTheme.colorScheme.primary.copy(alpha = 0.18f)
+                                    else Color.Transparent
+                                )
+                                .clickable {
+                                    navController.navigate(screen.route) {
+                                        popUpTo(navController.graph.startDestinationId) { saveState = true }
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
+                                }
+                                .padding(vertical = 8.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            Icon(
+                                imageVector = screen.icon,
+                                contentDescription = stringResource(screen.titleRes),
+                                tint = if (selected) MaterialTheme.colorScheme.primary
+                                else MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.size(22.dp)
+                            )
+
+                            Text(
+                                text = stringResource(screen.titleRes),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = if (selected) MaterialTheme.colorScheme.primary
+                                else MaterialTheme.colorScheme.onSurfaceVariant,
+                                textAlign = TextAlign.Center,
+                                maxLines = 1
+                            )
+                        }
+                    }
                 }
             }
         }

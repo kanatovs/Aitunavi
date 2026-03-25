@@ -1,3 +1,32 @@
 <resources>
-    <string name="app_name">AITUStudentNavigator</string>
+    <string name="app_name">AITU Student Navigator</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_fx">FX</string>
+    <string name="settings_performance">Performance</string>
+    <string name="settings_notifications">Reminders</string>
+    <string name="settings_creator">Creator</string>
+    <string name="settings_partners">Partners</string>
+
+    <string name="lang_ru">RU</string>
+    <string name="lang_en">EN</string>
+
+    <string name="theme_classic">Classic</string>
+    <string name="theme_violet">Violet</string>
+    <string name="theme_obsidian">Obsidian</string>
+    <string name="theme_nebula">Nebula</string>
+    <string name="theme_rose_neon">Rose Neon</string>
+    <string name="theme_sunset">Sunset</string>
+    <string name="theme_mono">Mono</string>
+    <string name="theme_cyber_mint">Cyber Mint</string>
+    <string name="theme_deep_space">Deep Space</string>
+    <string name="theme_silver">Silver</string>
+    <string name="theme_gray">Gray</string>
+    <string name="theme_black">Black</string>
+    <string name="nav_today">Today</string>
+    <string name="nav_chronos">Chronos</string>
+    <string name="nav_atlas">Atlas</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_settings">Settings</string>
 </resources>

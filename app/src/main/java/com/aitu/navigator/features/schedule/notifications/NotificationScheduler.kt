@@ -91,6 +91,25 @@ object NotificationScheduler {
         }
     }
 
+    fun countPlannedForNext7Days(
+        group: GroupSchedule,
+        settings: SettingsState,
+        now: LocalDateTime = LocalDateTime.now()
+    ): Int {
+        if (!settings.notificationsEnabled) return 0
+
+        return buildUpcomingLessonsForNext7Days(group.schedule).count { item ->
+            val lesson = item.lesson
+            if (!shouldNotifyLesson(lesson, settings)) return@count false
+
+            val startTime = parseStartTime(lesson.time) ?: return@count false
+            val lessonStart = LocalDateTime.of(item.date, startTime)
+            val notifyAt = lessonStart.minusMinutes(settings.leadMinutes.toLong())
+
+            !notifyAt.isBefore(now) && !isInQuietHours(notifyAt.toLocalTime(), settings)
+        }
+    }
+
     private fun shouldNotifyLesson(
         lesson: Lesson,
         settings: SettingsState

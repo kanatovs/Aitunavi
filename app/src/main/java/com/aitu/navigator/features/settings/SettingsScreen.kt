@@ -2,103 +2,173 @@ package com.aitu.navigator.features.settings
 
 import android.content.Intent
 import android.provider.Settings
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Card
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.compose.foundation.layout.ColumnScope
-
+import com.aitu.navigator.R
+import com.aitu.navigator.ui.components.IosSectionCard
 @Composable
 fun SettingsScreen(vm: SettingsViewModel = viewModel()) {
     val state by vm.settings.collectAsState()
+    val plannedCount by vm.plannedNotificationsCount.collectAsState()
     val context = LocalContext.current
 
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
+            .navigationBarsPadding()
             .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
         item {
-            Text("Настройки", style = MaterialTheme.typography.headlineSmall)
+            Text(
+                text = stringResource(R.string.settings_title),
+                style = MaterialTheme.typography.headlineLarge
+            )
+
         }
 
         item {
-            SettingsSection("Язык") {
-                ChoiceRow(
-                    options = listOf("RU", "EN"),
-                    selected = state.language,
-                    onSelect = vm::setLanguage
-                )
+            IosSectionCard(
+                title = stringResource(R.string.settings_language),
+                subtitle = "Choose interface language."
+            ) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilterChip(
+                        selected = state.language == "ru",
+                        onClick = { vm.setLanguage("ru") },
+                        label = { Text(stringResource(R.string.lang_ru)) }
+                    )
+                    FilterChip(
+                        selected = state.language == "en",
+                        onClick = { vm.setLanguage("en") },
+                        label = { Text(stringResource(R.string.lang_en)) }
+                    )
+                }
             }
         }
 
         item {
-            SettingsSection("Тема") {
-                ChoiceRow(
-                    options = listOf("System", "Light", "Dark"),
-                    selected = state.theme,
-                    onSelect = vm::setTheme
+            IosSectionCard(
+                title = stringResource(R.string.settings_theme),
+                subtitle = "Pick a visual style."
+            ) {
+                val themeOptions = listOf(
+                    ThemeOption("classic", stringResource(R.string.theme_classic)),
+                    ThemeOption("violet", stringResource(R.string.theme_violet)),
+                    ThemeOption("obsidian", stringResource(R.string.theme_obsidian)),
+                    ThemeOption("nebula", stringResource(R.string.theme_nebula)),
+                    ThemeOption("rose_neon", stringResource(R.string.theme_rose_neon)),
+                    ThemeOption("sunset", stringResource(R.string.theme_sunset)),
+                    ThemeOption("mono", stringResource(R.string.theme_mono)),
+                    ThemeOption("cyber_mint", stringResource(R.string.theme_cyber_mint)),
+                    ThemeOption("deep_space", stringResource(R.string.theme_deep_space)),
+                    ThemeOption("silver", stringResource(R.string.theme_silver)),
+                    ThemeOption("gray", stringResource(R.string.theme_gray)),
+                    ThemeOption("black", stringResource(R.string.theme_black))
                 )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    themeOptions.forEach { option ->
+                        FilterChip(
+                            selected = state.theme == option.id,
+                            onClick = { vm.setTheme(option.id) },
+                            label = { Text(option.label) }
+                        )
+                    }
+                }
             }
         }
 
         item {
-            SettingsSection("FX") {
-                Text("Master: ${(state.fxMaster * 100).toInt()}%")
-                Slider(
+            IosSectionCard(
+                title = stringResource(R.string.settings_fx),
+                subtitle = "Настройте интенсивность визуальных эффектов."
+            ) {
+                SmallSliderBlock(
+                    title = "Master",
                     value = state.fxMaster,
-                    onValueChange = vm::setFxMaster,
-                    valueRange = 0f..1f
+                    onValueChange = vm::setFxMaster
                 )
 
-                Text("Glow: ${(state.fxGlow * 100).toInt()}%")
-                Slider(
+                SmallSliderBlock(
+                    title = "Glow",
                     value = state.fxGlow,
-                    onValueChange = vm::setFxGlow,
-                    valueRange = 0f..1f
+                    onValueChange = vm::setFxGlow
                 )
 
-                Text("Glass: ${(state.fxGlass * 100).toInt()}%")
-                Slider(
+                SmallSliderBlock(
+                    title = "Glass",
                     value = state.fxGlass,
-                    onValueChange = vm::setFxGlass,
-                    valueRange = 0f..1f
+                    onValueChange = vm::setFxGlass
                 )
             }
         }
 
         item {
-            SettingsSection("Производительность") {
-                ChoiceRow(
+            IosSectionCard(
+                title = stringResource(R.string.settings_performance),
+                subtitle = "Выберите баланс между красотой и скоростью."
+            ) {
+
+            Text(
+                    text = "Режим",
+                    style = MaterialTheme.typography.titleSmall
+                )
+                Spacer(Modifier.height(6.dp))
+
+                CompactChoiceRow(
                     options = listOf("Auto", "Full", "Balanced", "Saver"),
                     selected = state.performance,
                     onSelect = vm::setPerformance
                 )
 
-                Spacer(Modifier.height(12.dp))
+                Spacer(Modifier.height(10.dp))
 
-                ChoiceRow(
+                Text(
+                    text = "FPS",
+                    style = MaterialTheme.typography.titleSmall
+                )
+                Spacer(Modifier.height(6.dp))
+
+                CompactChoiceRow(
                     options = listOf("Auto", "Prefer 120", "Cap 60"),
                     selected = state.fps,
                     onSelect = vm::setFps
@@ -107,69 +177,98 @@ fun SettingsScreen(vm: SettingsViewModel = viewModel()) {
         }
 
         item {
-            SettingsSection("Уведомления") {
-                SwitchRow(
-                    title = "Включить уведомления",
+            IosSectionCard(
+                title = "Виджет расписания",
+                subtitle = "Отдельная настройка внешнего вида и контента виджета."
+            ) {
+                OutlinedButton(onClick = {}, modifier = Modifier.fillMaxWidth()) {
+                    Text("Открыть настройки виджета")
+                }
+            }
+        }
+
+        item {
+            IosSectionCard(
+                title = stringResource(R.string.settings_notifications),
+                subtitle = "Настройте уведомления перед началом пары."
+            ) {
+            CompactSwitchRow(
+                    title = "Включить напоминания",
                     checked = state.notificationsEnabled,
                     onCheckedChange = vm::setNotificationsEnabled
                 )
+                Text(
+                    text = "Запланировано уведомлений: $plannedCount",
+                    style = MaterialTheme.typography.bodySmall
+                )
 
-                Spacer(Modifier.height(8.dp))
+                Spacer(Modifier.height(10.dp))
 
-                Text("Предупреждать за")
-                ChoiceRow(
+                Text(
+                    text = "Предупреждать за",
+                    style = MaterialTheme.typography.titleSmall
+                )
+                Spacer(Modifier.height(6.dp))
+
+                CompactChoiceRow(
                     options = listOf("5", "10", "15", "30", "45", "60"),
                     selected = state.leadMinutes.toString(),
                     onSelect = { vm.setLeadMinutes(it.toInt()) }
                 )
 
-                Spacer(Modifier.height(8.dp))
+                Spacer(Modifier.height(10.dp))
 
-                Text("Формат")
-                ChoiceRow(
+                Text(
+                    text = "Формат",
+                    style = MaterialTheme.typography.titleSmall
+                )
+                Spacer(Modifier.height(6.dp))
+
+                CompactChoiceRow(
                     options = listOf("TitleOnly", "Full"),
                     selected = state.notificationFormat,
                     onSelect = vm::setNotificationFormat
                 )
 
-                Spacer(Modifier.height(8.dp))
+                Spacer(Modifier.height(10.dp))
 
-                SwitchRow(
+                CompactSwitchRow(
                     title = "Звук",
                     checked = state.soundEnabled,
                     onCheckedChange = vm::setSoundEnabled
                 )
 
-                SwitchRow(
-                    title = "Включать online-пары",
+                CompactSwitchRow(
+                    title = "Online-пары",
                     checked = state.includeOnline,
                     onCheckedChange = vm::setIncludeOnline
                 )
 
-                SwitchRow(
-                    title = "Включать лекции",
+                CompactSwitchRow(
+                    title = "Лекции",
                     checked = state.includeLecture,
                     onCheckedChange = vm::setIncludeLecture
                 )
 
-                SwitchRow(
-                    title = "Показывать тип пары (в Full)",
+                CompactSwitchRow(
+                    title = "Показывать тип пары",
                     checked = state.showTypeInFull,
                     onCheckedChange = vm::setShowTypeInFull
                 )
 
-                Spacer(Modifier.height(8.dp))
+                Spacer(Modifier.height(10.dp))
 
-                SwitchRow(
+                CompactSwitchRow(
                     title = "Тихие часы",
                     checked = state.quietHoursEnabled,
                     onCheckedChange = vm::setQuietHoursEnabled
                 )
 
                 if (state.quietHoursEnabled) {
-                    Spacer(Modifier.height(8.dp))
+                    Spacer(Modifier.height(10.dp))
 
-                    Text("Начало тихих часов")
+                    Text("Начало", style = MaterialTheme.typography.titleSmall)
+                    Spacer(Modifier.height(6.dp))
                     TimeChoiceRow(
                         hour = state.quietStartHour,
                         minute = state.quietStartMinute,
@@ -193,7 +292,8 @@ fun SettingsScreen(vm: SettingsViewModel = viewModel()) {
 
                     Spacer(Modifier.height(8.dp))
 
-                    Text("Конец тихих часов")
+                    Text("Конец", style = MaterialTheme.typography.titleSmall)
+                    Spacer(Modifier.height(6.dp))
                     TimeChoiceRow(
                         hour = state.quietEndHour,
                         minute = state.quietEndMinute,
@@ -217,9 +317,7 @@ fun SettingsScreen(vm: SettingsViewModel = viewModel()) {
                 }
 
                 Spacer(Modifier.height(10.dp))
-                Text("Запланировано уведомлений: ${vm.getPlannedNotificationsCount()}")
 
-                Spacer(Modifier.height(10.dp))
                 OutlinedButton(
                     onClick = {
                         context.startActivity(
@@ -230,42 +328,40 @@ fun SettingsScreen(vm: SettingsViewModel = viewModel()) {
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Открыть системные настройки")
+                    Text("Системные настройки")
                 }
             }
         }
 
         item {
-            SettingsSection("Информация") {
-                Text("Создатель")
-                Text("Sabyr")
-                Spacer(Modifier.height(8.dp))
-                Text("Партнёры")
-                Text("Mikosha")
+            IosSectionCard(title = stringResource(R.string.settings_creator)) {
+
+            Text(
+                    text = "Sabyr",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+        }
+
+        item {
+            IosSectionCard(title = stringResource(R.string.settings_partners)) {
+            Text(
+                    text ="Mikosha",
+                    style = MaterialTheme.typography.bodyMedium
+                )
             }
         }
     }
 }
 
 @Composable
-private fun SettingsSection(
+private fun SettingsSectionCard(
     title: String,
     content: @Composable ColumnScope.() -> Unit
-) {
-    Card(modifier = Modifier.fillMaxWidth()) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            Text(title, style = MaterialTheme.typography.titleLarge)
-            Spacer(Modifier.height(4.dp))
-            content()
-        }
-    }
-}
+) = IosSectionCard(title = title, content = content)
 
 @Composable
-private fun ChoiceRow(
+private fun CompactChoiceRow(
     options: List<String>,
     selected: String,
     onSelect: (String) -> Unit
@@ -286,20 +382,61 @@ private fun ChoiceRow(
 }
 
 @Composable
-private fun SwitchRow(
+private fun CompactSwitchRow(
     title: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = 40.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(title, modifier = Modifier.weight(1f))
+        Text(
+            text = title,
+            modifier = Modifier.weight(1f),
+            style = MaterialTheme.typography.bodyMedium
+        )
+
         Switch(
             checked = checked,
             onCheckedChange = onCheckedChange
         )
+    }
+}
+
+@Composable
+private fun SmallSliderBlock(
+    title: String,
+    value: Float,
+    onValueChange: (Float) -> Unit
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(title, style = MaterialTheme.typography.titleSmall)
+            Text("${(value * 100).toInt()}%", style = MaterialTheme.typography.bodySmall)
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(22.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Slider(
+                value = value,
+                onValueChange = onValueChange,
+                valueRange = 0f..1f,
+                modifier = Modifier.fillMaxWidth(),
+                colors = SliderDefaults.colors()
+            )
+        }
     }
 }
 
@@ -316,16 +453,67 @@ private fun TimeChoiceRow(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            TextButton(onClick = onPrevHour) { Text("-h") }
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            TextButton(
+                onClick = onPrevHour,
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp)
+            ) {
+                Text("-h")
+            }
             Text(String.format("%02d", hour))
-            TextButton(onClick = onNextHour) { Text("+h") }
+            TextButton(
+                onClick = onNextHour,
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp)
+            ) {
+                Text("+h")
+            }
         }
 
-        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            TextButton(onClick = onPrevMinute) { Text("-m") }
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            TextButton(
+                onClick = onPrevMinute,
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp)
+            ) {
+                Text("-m")
+            }
             Text(String.format("%02d", minute))
-            TextButton(onClick = onNextMinute) { Text("+m") }
+            TextButton(
+                onClick = onNextMinute,
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp)
+            ) {
+                Text("+m")
+            }
         }
     }
 }
+@Composable
+private fun HorizontalThemeRow(
+    options: List<String>,
+    selected: String,
+    onSelect: (String) -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .horizontalScroll(rememberScrollState()),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        options.forEach { option ->
+            FilterChip(
+                selected = selected == option,
+                onClick = { onSelect(option) },
+                label = { Text(option) }
+            )
+        }
+    }
+}
+private data class ThemeOption(
+    val id: String,
+    val label: String
+)

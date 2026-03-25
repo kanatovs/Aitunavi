@@ -8,12 +8,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.aitu.navigator.ui.components.IosSectionCard
 
 private sealed class ChronosPage {
     data object Home : ChronosPage()
     data object Clubs : ChronosPage()
     data class ClubDetails(val club: Club) : ChronosPage()
     data object QaSoon : ChronosPage()
+    data object CafeteriaSoon : ChronosPage()
+    data object CalculatorSoon : ChronosPage()
+    data object CalendarSoon : ChronosPage()
 }
 
 @Composable
@@ -40,6 +44,9 @@ fun ChronosScreen() {
         ChronosPage.QaSoon -> QaComingSoonScreen(
             onBack = { page = ChronosPage.Home }
         )
+        ChronosPage.CafeteriaSoon -> QaComingSoonScreen(onBack = { page = ChronosPage.Home })
+        ChronosPage.CalculatorSoon -> QaComingSoonScreen(onBack = { page = ChronosPage.Home })
+        ChronosPage.CalendarSoon -> QaComingSoonScreen(onBack = { page = ChronosPage.Home })
     }
 }
 
@@ -54,10 +61,8 @@ private fun ChronosHome(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Text(
-            text = "Chronos",
-            style = MaterialTheme.typography.headlineSmall
-        )
+        Text(text = "Chronos", style = MaterialTheme.typography.headlineMedium)
+        Text("Студенческая жизнь и клубы.", color = MaterialTheme.colorScheme.onSurfaceVariant)
 
         ChronosMenuCard(
             title = "Клубы",
@@ -70,6 +75,21 @@ private fun ChronosHome(
             subtitle = "Раздел FAQ и полезные ответы",
             onClick = onOpenQa
         )
+        ChronosMenuCard(
+            title = "Цены кафешек",
+            subtitle = "Актуальное меню напитков и цены.",
+            onClick = { }
+        )
+        ChronosMenuCard(
+            title = "Калькулятор",
+            subtitle = "Оценки, посещаемость и история.",
+            onClick = { }
+        )
+        ChronosMenuCard(
+            title = "Календарь",
+            subtitle = "Академический календарь по степени и курсу.",
+            onClick = { }
+        )
     }
 }
 
@@ -79,21 +99,16 @@ private fun ChronosMenuCard(
     subtitle: String,
     onClick: () -> Unit
 ) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(140.dp)
-            .clickable { onClick() }
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(20.dp),
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(title, style = MaterialTheme.typography.titleLarge)
-            Spacer(Modifier.height(8.dp))
-            Text(subtitle, style = MaterialTheme.typography.bodyMedium)
+    IosSectionCard(title = title, subtitle = subtitle) {
+        TextButton(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text("Открыть")
+                Text(">")
+            }
         }
     }
 }

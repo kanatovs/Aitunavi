@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.map
 private val Context.settingsDataStore by preferencesDataStore(name = "settings")
 
 data class SettingsState(
-    val language: String = "RU",
-    val theme: String = "System",
+    val language: String = "ru",
+    val theme: String = "classic",
     val fxMaster: Float = 0.5f,
     val fxGlow: Float = 0.5f,
     val fxGlass: Float = 0.5f,
@@ -61,8 +61,8 @@ class SettingsPrefs(private val context: Context) {
 
     val settingsFlow: Flow<SettingsState> = context.settingsDataStore.data.map { prefs ->
         SettingsState(
-            language = prefs[KEY_LANGUAGE] ?: "RU",
-            theme = prefs[KEY_THEME] ?: "System",
+            language = prefs[KEY_LANGUAGE] ?: "ru",
+            theme = prefs[KEY_THEME] ?: "classic",
             fxMaster = prefs[KEY_FX_MASTER] ?: 0.5f,
             fxGlow = prefs[KEY_FX_GLOW] ?: 0.5f,
             fxGlass = prefs[KEY_FX_GLASS] ?: 0.5f,

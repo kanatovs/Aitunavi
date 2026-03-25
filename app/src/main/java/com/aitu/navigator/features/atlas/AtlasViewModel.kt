@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.aitu.navigator.data.repository.AtlasRepository
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -37,6 +38,18 @@ class AtlasViewModel(app: Application) : AndroidViewModel(app) {
 
     private val _mapUrl = MutableStateFlow(DEFAULT_MAP_URL)
     val mapUrl: StateFlow<String> = _mapUrl
+
+    init {
+        viewModelScope.launch {
+            AtlasNavigationBridge.pendingRoom.collect { room ->
+                if (room.isNullOrBlank()) return@collect
+                _query.value = room
+                search()
+                _results.value.firstOrNull()?.let { pickResult(it) }
+                AtlasNavigationBridge.consume()
+            }
+        }
+    }
 
     fun setQuery(text: String) { _query.value = text }
 
