@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -502,7 +503,7 @@ private fun TodayLessonRow(
                         TextButton(
                             onClick = { onOpenAtlas(loc.classroom) },
                             modifier = Modifier
-                                .height(28.dp)
+                                .heightIn(min = 48.dp)
                                 .background(
                                     color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.55f),
                                     shape = RoundedCornerShape(14.dp)
