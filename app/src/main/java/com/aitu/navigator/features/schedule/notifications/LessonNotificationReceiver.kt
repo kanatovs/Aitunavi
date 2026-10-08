@@ -7,21 +7,14 @@ import android.content.Intent
 class LessonNotificationReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        val title = intent.getStringExtra(EXTRA_TITLE) ?: "Upcoming lesson"
-        val message = intent.getStringExtra(EXTRA_MESSAGE) ?: "Your lesson starts soon."
-        val notificationId = intent.getIntExtra(EXTRA_NOTIFICATION_ID, 0)
-
-        NotificationUtils.showLessonNotification(
-            context = context,
-            notificationId = notificationId,
-            title = title,
-            message = message
-        )
+        NotificationScheduler.deliverIfCurrent(context, intent)
     }
 
     companion object {
         const val EXTRA_TITLE = "extra_title"
         const val EXTRA_MESSAGE = "extra_message"
         const val EXTRA_NOTIFICATION_ID = "extra_notification_id"
+        const val EXTRA_SOUND_ENABLED = "extra_sound_enabled"
+        const val EXTRA_GENERATION = "extra_generation"
     }
 }

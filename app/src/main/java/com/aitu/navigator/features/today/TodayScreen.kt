@@ -52,6 +52,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.content.ClipboardManager
+import android.content.Context
+import android.widget.Toast
+import com.aitu.navigator.R
 import java.io.File
 import java.time.LocalDate
 import java.time.LocalTime
@@ -623,7 +627,7 @@ private fun NoteDialog(
     var previewPath by remember { mutableStateOf<String?>(null) }
     var previewUri by remember { mutableStateOf<Uri?>(null) }
     val picker = rememberLauncherForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris ->
-        if (uris.isNotEmpty()) newUris = (newUris + uris).take(10)
+        if (uris.isNotEmpty()) newUris = (newUris + uris).distinct().take((10 - keptPaths.size).coerceAtLeast(0))
     }
 
     AlertDialog(
@@ -640,8 +644,30 @@ private fun NoteDialog(
 
                 Text("Изображения: ${keptPaths.size + newUris.size}")
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedButton(onClick = { picker.launch("image/*") }) { Text("Добавить") }
-                    OutlinedButton(onClick = { /* TODO: вставка из буфера */ }) { Text("Вставить") }
+                    OutlinedButton(
+                        onClick = { picker.launch("image/*") },
+                        enabled = keptPaths.size + newUris.size < 10
+                    ) { Text("Добавить") }
+                    OutlinedButton(
+                        enabled = keptPaths.size + newUris.size < 10,
+                        onClick = {
+                            val images = runCatching {
+                                val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                val clip = clipboard.primaryClip
+                                (0 until (clip?.itemCount ?: 0)).mapNotNull { index ->
+                                    clip?.getItemAt(index)?.uri?.takeIf { uri ->
+                                        uri.scheme == "content" &&
+                                            context.contentResolver.getType(uri)?.startsWith("image/") == true
+                                    }
+                                }
+                            }.getOrDefault(emptyList())
+                            if (images.isEmpty()) {
+                                Toast.makeText(context, R.string.note_clipboard_no_image, Toast.LENGTH_SHORT).show()
+                            } else {
+                                newUris = (newUris + images).distinct().take((10 - keptPaths.size).coerceAtLeast(0))
+                            }
+                        }
+                    ) { Text("Вставить") }
                 }
 
                 val imageItems = keptPaths + newUris.map { it.toString() }
