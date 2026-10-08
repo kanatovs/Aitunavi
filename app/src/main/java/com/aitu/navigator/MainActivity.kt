@@ -46,10 +46,18 @@ import com.aitu.navigator.features.settings.AppSettingsViewModel
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.aitu.navigator.data.datastore.SettingsPrefs
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.CancellationException
+import com.aitu.navigator.data.datastore.AppPrefs
+import com.aitu.navigator.features.schedule.notifications.NotificationCoordinator
+import com.aitu.navigator.features.schedule.notifications.NotificationRefreshWorker
+import com.aitu.navigator.features.schedule.notifications.NotificationPlan
 class MainActivity : ComponentActivity() {
 
     private val notificationPermissionLauncher =
@@ -60,6 +68,25 @@ class MainActivity : ComponentActivity() {
 
         NotificationUtils.createChannel(this)
         requestNotificationPermissionIfNeeded()
+        NotificationRefreshWorker.ensurePeriodicRefresh(applicationContext)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                combine(
+                    SettingsPrefs(applicationContext).settingsFlow,
+                    AppPrefs(applicationContext).activeGroup
+                ) { settings, group -> NotificationPlan.settingsKey(settings) to group }
+                    .distinctUntilChanged().collect {
+                    try {
+                        NotificationCoordinator.refreshFromPreferences(applicationContext)
+                    } catch (cancelled: CancellationException) {
+                        throw cancelled
+                    } catch (error: Exception) {
+                        android.util.Log.w("LessonReminders", "Unable to refresh lesson reminders", error)
+                        NotificationRefreshWorker.requestRefresh(applicationContext)
+                    }
+                }
+            }
+        }
         lifecycleScope.launch {
             val settings = SettingsPrefs(applicationContext).settingsFlow.first()
 

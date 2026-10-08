@@ -5,67 +5,41 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-object NotificationUtils {
 
+object NotificationUtils {
     const val CHANNEL_ID = "schedule_channel"
+    private const val SILENT_CHANNEL_ID = "schedule_channel_silent"
 
     fun createChannel(context: Context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                "Schedule notifications",
-                NotificationManager.IMPORTANCE_HIGH
-            ).apply {
-                description = "Notifications about upcoming lessons"
-            }
-
-            val manager =
-                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            manager.createNotificationChannel(channel)
-        }
+        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        manager.createNotificationChannel(NotificationChannel(CHANNEL_ID, "Schedule notifications", NotificationManager.IMPORTANCE_HIGH).apply {
+            description = "Notifications about upcoming lessons"
+        })
+        manager.createNotificationChannel(NotificationChannel(SILENT_CHANNEL_ID, "Silent schedule notifications", NotificationManager.IMPORTANCE_DEFAULT).apply {
+            description = "Lesson reminders without sound or vibration"
+            setSound(null, null)
+            enableVibration(false)
+        })
     }
 
-    fun showLessonNotification(
-        context: Context,
-        notificationId: Int,
-        title: String,
-        message: String
-    ) {
+    fun showLessonNotification(context: Context, notificationId: Int, title: String, message: String, soundEnabled: Boolean = true) {
         createChannel(context)
-
-        fun showLessonNotification(
-            context: Context,
-            notificationId: Int,
-            title: String,
-            message: String
-        ) {
-            createChannel(context)
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                val granted = ContextCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) == PackageManager.PERMISSION_GRANTED
-
-                if (!granted) return
-            }
-
-            val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setStyle(NotificationCompat.BigTextStyle().bigText(message))
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setCategory(NotificationCompat.CATEGORY_ALARM)
-                .setAutoCancel(true)
-                .build()
-            android.util.Log.d("NOTIFY_TEST", "show notify id=$notificationId title=$title")
-            NotificationManagerCompat.from(context).notify(notificationId, notification)
-        }
+        if (android.os.Build.VERSION.SDK_INT >= 33 &&
+            ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) return
+        val notification = NotificationCompat.Builder(context, if (soundEnabled) CHANNEL_ID else SILENT_CHANNEL_ID)
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(message))
+            .setPriority(if (soundEnabled) NotificationCompat.PRIORITY_HIGH else NotificationCompat.PRIORITY_DEFAULT)
+            .setSilent(!soundEnabled)
+            .setCategory(NotificationCompat.CATEGORY_REMINDER)
+            .setAutoCancel(true)
+            .build()
+        NotificationManagerCompat.from(context).notify(notificationId, notification)
     }
 }

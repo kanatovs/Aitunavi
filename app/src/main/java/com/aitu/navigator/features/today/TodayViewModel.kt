@@ -13,11 +13,11 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import kotlinx.coroutines.flow.map
-import com.aitu.navigator.data.datastore.SettingsPrefs
-import com.aitu.navigator.features.schedule.notifications.NotificationScheduler
-import com.aitu.navigator.features.schedule.notifications.NotificationUtils
-import kotlinx.coroutines.flow.first
 import java.io.File
+import com.aitu.navigator.features.schedule.notifications.NotificationScheduler
+import com.aitu.navigator.features.schedule.notifications.NotificationRefreshWorker
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 sealed class TodayUiState {
     data object Loading : TodayUiState()
     data class Error(val message: String) : TodayUiState()
@@ -39,7 +39,6 @@ class TodayViewModel(app: Application) : AndroidViewModel(app) {
 
     private val repo = MikoRepository(app.applicationContext)
     private val prefs = AppPrefs(app.applicationContext)
-    private val settingsPrefs = SettingsPrefs(app.applicationContext)//testim
     // Загружаем Miko.json один раз
     private val groupsResult = MutableStateFlow<Result<List<GroupSchedule>>?>(null)
 
@@ -151,6 +150,7 @@ class TodayViewModel(app: Application) : AndroidViewModel(app) {
                 // Если группа существует — сохраняем
                 viewModelScope.launch {
                     prefs.setActiveGroup(normalized)
+                    NotificationRefreshWorker.requestRefresh(getApplication<Application>().applicationContext)
                 }
             },
             onFailure = {
@@ -162,6 +162,8 @@ class TodayViewModel(app: Application) : AndroidViewModel(app) {
     fun changeGroup() {
         viewModelScope.launch {
             prefs.clearActiveGroup()
+            NotificationScheduler.cancelAll(getApplication<Application>().applicationContext)
+            NotificationRefreshWorker.requestRefresh(getApplication<Application>().applicationContext)
         }
         groupInput.value = ""
         resetToToday()
@@ -177,7 +179,7 @@ class TodayViewModel(app: Application) : AndroidViewModel(app) {
         newImageUris: List<Uri>
     ) {
         viewModelScope.launch {
-            val savedNewPaths = newImageUris.mapNotNull { copyImageToNotesDir(it) }
+            val savedNewPaths = withContext(Dispatchers.IO) { newImageUris.mapNotNull { copyImageToNotesDir(it) } }
             val allPaths = (keptImagePaths + savedNewPaths).distinct()
 
             if (text.isBlank() && allPaths.isEmpty()) {

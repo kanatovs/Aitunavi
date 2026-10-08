@@ -9,12 +9,12 @@ import com.aitu.navigator.data.datastore.SettingsState
 import com.aitu.navigator.data.repository.MikoRepository
 import com.aitu.navigator.data.model.GroupSchedule
 import com.aitu.navigator.features.schedule.notifications.NotificationScheduler
+import com.aitu.navigator.features.schedule.notifications.NotificationRefreshWorker
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import androidx.appcompat.app.AppCompatDelegate
@@ -56,66 +56,71 @@ class SettingsViewModel(app: Application) : AndroidViewModel(app) {
     fun setNotificationsEnabled(value: Boolean) =
         viewModelScope.launch {
             prefs.setNotificationsEnabled(value)
-            rescheduleNotifications()
+            if (!value) NotificationScheduler.cancelAll(getApplication<Application>().applicationContext)
+            requestNotificationRefresh()
         }
 
     fun setLeadMinutes(value: Int) =
         viewModelScope.launch {
             prefs.setLeadMinutes(value)
-            rescheduleNotifications()
+            requestNotificationRefresh()
         }
 
     fun setNotificationFormat(value: String) =
         viewModelScope.launch {
             prefs.setNotificationFormat(value)
-            rescheduleNotifications()
+            requestNotificationRefresh()
         }
 
     fun setSoundEnabled(value: Boolean) =
         viewModelScope.launch {
             prefs.setSoundEnabled(value)
-            rescheduleNotifications()
+            requestNotificationRefresh()
         }
 
     fun setIncludeOnline(value: Boolean) =
         viewModelScope.launch {
             prefs.setIncludeOnline(value)
-            rescheduleNotifications()
+            requestNotificationRefresh()
         }
 
     fun setIncludeLecture(value: Boolean) =
         viewModelScope.launch {
             prefs.setIncludeLecture(value)
-            rescheduleNotifications()
+            requestNotificationRefresh()
         }
 
     fun setShowTypeInFull(value: Boolean) =
         viewModelScope.launch {
             prefs.setShowTypeInFull(value)
-            rescheduleNotifications()
+            requestNotificationRefresh()
         }
 
     fun setQuietHoursEnabled(value: Boolean) =
         viewModelScope.launch {
             prefs.setQuietHoursEnabled(value)
-            rescheduleNotifications()
+            requestNotificationRefresh()
         }
 
     fun setQuietStart(hour: Int, minute: Int) =
         viewModelScope.launch {
             prefs.setQuietStart(hour, minute)
-            rescheduleNotifications()
+            requestNotificationRefresh()
         }
 
     fun setQuietEnd(hour: Int, minute: Int) =
         viewModelScope.launch {
             prefs.setQuietEnd(hour, minute)
-            rescheduleNotifications()
+            requestNotificationRefresh()
         }
+
+    private fun requestNotificationRefresh() {
+        NotificationRefreshWorker.requestRefresh(getApplication<Application>().applicationContext)
+    }
 
     private fun observePlannedNotificationsCount() {
         viewModelScope.launch {
-            combine(settings, appPrefs.activeGroup) { settingsState, activeGroup ->
+            combine(prefs.settingsFlow, appPrefs.activeGroup) { settingsState, activeGroup ->
                 settingsState to activeGroup
             }.collect { (settingsState, activeGroupRaw) ->
                 val activeGroup = activeGroupRaw?.trim().orEmpty()
@@ -137,12 +142,4 @@ class SettingsViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
-    private suspend fun rescheduleNotifications() {
-        val context = getApplication<Application>().applicationContext
-        val activeGroup = appPrefs.activeGroup.first().orEmpty().trim()
-        if (activeGroup.isBlank()) return
-        val settingsState = settings.value
-        val group = cachedGroups.firstOrNull { it.group_name.equals(activeGroup, ignoreCase = true) } ?: return
-        NotificationScheduler.rescheduleForGroup(context, group, settingsState)
-    }
 }
