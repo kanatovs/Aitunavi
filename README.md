@@ -2,43 +2,43 @@
 
 [![Android checks](https://github.com/kanatovs/Aitunavi/actions/workflows/android.yml/badge.svg)](https://github.com/kanatovs/Aitunavi/actions/workflows/android.yml)
 
-Android-приложение для студентов AITU: расписание группы и преподавателей, карта кампуса, заметки и напоминания о занятиях. Основные данные включены в приложение; аккаунт и сервер для расписания не нужны.
+An Android application for AITU students: group and teacher schedules, a campus atlas, daily notes, and lesson reminders. Schedule data is bundled with the app; no account or schedule server is required.
 
-## Возможности
+## Features
 
-- **Сегодня:** выбор группы, переход между датами, полное расписание и детали занятий.
-- **Поиск:** индекс преподавателей из расписания, их занятия и история поиска.
-- **Атлас:** поиск аудиторий и мест кампуса, встроенная веб-карта.
-- **Заметки:** текст и до 10 изображений на дату; выбор из галереи, вставка доступного изображения из буфера, просмотр и удаление вложений.
-- **Напоминания:** выбор времени предупреждения, фильтры онлайн-занятий и лекций, тихие часы, формат и звук.
-- **Настройки:** русский/английский язык, темы и параметры оформления.
+- **Today:** select a group, browse dates, and view the full schedule and lesson details.
+- **Search:** find teachers from the schedule and browse their lessons and recent searches.
+- **Atlas:** search campus rooms and points of interest, with an embedded web map.
+- **Notes:** save text and up to 10 images per date; select images, paste accessible clipboard images, and view or remove attachments.
+- **Reminders:** configure lead time, online and lecture filters, quiet hours, notification format, and sound.
+- **Settings:** Russian and English language options, themes, and appearance controls.
 
-Расписание, поиск и заметки доступны офлайн. Для веб-карты нужен интернет.
+Schedules, search, and notes work offline. The web map requires an internet connection.
 
-## Скриншоты
+## Screenshots
 
-Реальные экраны debug-сборки на Android-эмуляторе:
+Actual screens from the debug application running on an Android emulator:
 
-| Выбор группы | Расписание дня | Напоминания |
+| Group selection | Daily schedule | Reminders |
 | --- | --- | --- |
-| ![Выбор группы](docs/screenshots/group-picker.png) | ![Расписание дня](docs/screenshots/today.png) | ![Настройки напоминаний](docs/screenshots/reminders.png) |
+| ![Group selection](docs/screenshots/group-picker.png) | ![Daily schedule](docs/screenshots/today.png) | ![Reminder settings](docs/screenshots/reminders.png) |
 
-## Сборка и запуск
+## Build and run
 
-Нужны JDK 21, Android SDK Platform **36.1** и Build Tools **36.0.0**. Минимальная версия устройства — Android 8.0 (API 26). Проект содержит Gradle Wrapper; отдельно устанавливать Gradle не требуется.
+Install JDK 21, Android SDK Platform **36.1**, and Build Tools **36.0.0**. The minimum supported device is Android 8.0 (API 26). The repository includes the Gradle Wrapper.
 
-1. Откройте репозиторий в Android Studio и дождитесь синхронизации.
-2. Установите SDK через SDK Manager.
-3. Укажите путь к SDK в локальном `local.properties`, например `sdk.dir=C:/Users/YourName/AppData/Local/Android/Sdk`, либо задайте `ANDROID_HOME`.
-4. Запустите конфигурацию `app` на эмуляторе или устройстве.
+1. Open the repository in Android Studio and wait for Gradle synchronization.
+2. Install the required SDK packages through SDK Manager.
+3. Set the SDK path in an untracked `local.properties`, for example `sdk.dir=C:/Users/YourName/AppData/Local/Android/Sdk`, or set `ANDROID_HOME`.
+4. Run the `app` configuration on an emulator or device.
 
-Из терминала:
+From a terminal:
 
 ```bash
 ./gradlew testDebugUnitTest lintDebug assembleDebug
 ```
 
-В Windows PowerShell:
+From Windows PowerShell:
 
 ```powershell
 $env:JAVA_HOME = "C:/Program Files/Android/Android Studio/jbr"
@@ -46,54 +46,53 @@ $env:ANDROID_HOME = "C:/Users/YourName/AppData/Local/Android/Sdk"
 ./gradlew.bat testDebugUnitTest lintDebug assembleDebug
 ```
 
-Debug APK создаётся в `app/build/outputs/apk/debug/app-debug.apk`. Это сборка для разработки, без отдельного ключа релизной подписи. GitHub Actions также сохраняет APK как артефакт успешной проверки.
+The debug APK is generated at `app/build/outputs/apk/debug/app-debug.apk`. It uses a development signing key; release signing and distribution are separate tasks. Successful GitHub Actions builds also upload the APK as an artifact.
 
-## Данные и устройство проекта
+## Data and project structure
 
-| Путь | Назначение |
+| Path | Purpose |
 | --- | --- |
-| `app/src/main/assets/Miko.json` | Встроенное расписание групп |
-| `app/src/main/assets/atlas_rooms.json`, `atlas_pois.json` | Аудитории и места кампуса |
-| `data/parser`, `data/repository` | Чтение JSON и модели данных |
-| `features/today` | Расписание дня, нормализация занятий и заметки |
-| `features/search`, `features/atlas`, `features/chronos` | Поиск, карта и клубы |
-| `features/schedule/notifications` | Планирование и доставка напоминаний |
-| `data/datastore` | Локальные настройки и заметки |
-| `docs/ТЗ-summary.md` | Требования и сверка с реализацией |
+| `app/src/main/assets/Miko.json` | Bundled group schedules |
+| `app/src/main/assets/atlas_rooms.json`, `atlas_pois.json` | Campus rooms and points of interest |
+| `data/parser`, `data/repository` | JSON loading and data access |
+| `features/today` | Daily schedule, lesson normalization, and notes |
+| `features/search`, `features/atlas`, `features/chronos` | Search, campus map, and clubs |
+| `features/schedule/notifications` | Reminder planning and delivery |
+| `data/datastore` | Local preferences and notes |
 
-Стек: Kotlin, Jetpack Compose, Material 3, Navigation Compose, DataStore, kotlinx.serialization, AlarmManager и WorkManager.
+Built with Kotlin, Jetpack Compose, Material 3, Navigation Compose, DataStore, kotlinx.serialization, AlarmManager, and WorkManager.
 
-Расписание — снимок из assets, без автоматического обновления с университетского сервера. Его актуальность нужно проверять перед использованием.
+The schedule is an asset snapshot and does not update automatically from a university server. Check its currency before relying on it.
 
-## Как работают напоминания
+## Reminder behavior
 
-План строится на ближайшие семь календарных дней и ограничен 60 ближайшими напоминаниями. Повторяющиеся строки одной пары объединяются, в том числе несколько аудиторий. Этот же расчёт используется для счётчика в настройках.
+The reminder plan covers the next seven calendar days and keeps at most 60 upcoming reminders. Duplicate lesson rows are combined, including multiple rooms. The settings counter uses the same planning logic.
 
-Старые `PendingIntent` действительно отменяются при перепланировании; выключение напоминаний и очистка группы также отменяют их. Метка поколения защищает от доставки уже устаревшего или повторного broadcast. Настройки читаются из DataStore, а не из отстающего состояния интерфейса.
+Rescheduling cancels the previous Android `PendingIntent` objects. Disabling reminders or clearing the selected group also cancels them. A generation token rejects stale broadcasts, and consuming a pending identifier prevents repeated delivery. Preferences are read from DataStore instead of potentially outdated UI state.
 
-Приложение обновляет план при запуске, изменении группы или настроек, перезагрузке устройства, обновлении APK и смене времени/часового пояса. WorkManager планирует ежедневное фоновое обновление; Android может отложить его из-за ограничений батареи.
+The app refreshes reminders on startup, group or reminder settings changes, device reboot, APK updates, and time or time zone changes. WorkManager requests a daily background refresh; Android may defer background work to save battery.
 
-Используется [неточный AlarmManager](https://developer.android.com/develop/background-work/services/alarms): Android может задержать доставку при Doze и ограничениях батареи. Точное время предупреждения не гарантируется; прошедшие моменты напоминаний при обновлении плана пропускаются. На Android 13+ необходимо разрешить уведомления. Звук также зависит от системных настроек выбранного канала. После принудительной остановки приложения откройте его снова для восстановления фоновой работы.
+Reminders use [inexact AlarmManager alarms](https://developer.android.com/develop/background-work/services/alarms). Doze and battery restrictions may delay delivery, so exact timing is not guaranteed. A refresh skips reminder times that have already passed. Android 13 and later require notification permission. Sound also depends on the selected notification channel's system settings. After force-stopping the app, open it again to restore background work.
 
-Тихие часы включают начало интервала и исключают конец; одинаковые границы означают отсутствие тихого интервала.
+Quiet hours include the starting boundary and exclude the ending boundary. Equal boundaries mean there is no quiet interval.
 
-## Проверки
+## Verification
 
-`testDebugUnitTest` проверяет даты и границы недельного окна, время предупреждения, фильтры, тихие часы, некорректное время, объединение аудиторий и лимит напоминаний.
+`testDebugUnitTest` covers planning dates and the seven-day window, lead time, filters, quiet hours, invalid times, room normalization, and reminder limits. Robolectric regression tests cover permission checks, publishing notification content, silent channels, group changes, cancellation, stale broadcasts, and duplicate delivery.
 
-Для тестов на устройстве:
+Run the existing device tests with an emulator or device connected:
 
 ```bash
 ./gradlew connectedDebugAndroidTest
 ```
 
-Регрессионные тесты проверяют отмену реальных `PendingIntent`, смену группы, отклонение старого broadcast, фактическую публикацию уведомления, тихий канал и однократную доставку. GitHub Actions запускает сборку, lint, JVM-тесты и отдельные тесты на эмуляторе Android.
+The instrumented tests verify real `PendingIntent` cancellation, group changes, stale broadcast rejection, publication through Android's notification manager, silent channels, single delivery, and the refresh generation guard. GitHub Actions runs JVM tests, lint, APK assembly, and a separate Android emulator job. Build success alone does not verify real-device alarm timing or delivery under manufacturer battery restrictions.
 
-## Ограничения и следующие шаги
+## Limitations
 
-- Локализация интерфейса частичная: часть экранов пока содержит русский текст напрямую.
-- Заметки привязаны к дате и общие для разных групп; изображения хранятся в приватной папке приложения.
-- Вставка из буфера поддерживает доступные `content://` URI изображений. Текстовые ссылки на изображения не загружаются.
-- Нет автоматической синхронизации расписания, учётных записей и облачной синхронизации заметок.
-- Параметры оформления не являются гарантией конкретной частоты кадров.
-- Перед использованием на реальном устройстве стоит проверить разрешения и ограничения батареи производителя.
+- Localization is partial; some screens still contain hardcoded Russian text.
+- Notes belong to dates and are shared across groups. Images are stored in the app's private directory.
+- Clipboard paste supports accessible `content://` image URIs. Image URLs are not downloaded.
+- There is no automatic schedule synchronization, user account system, or cloud note synchronization.
+- Appearance settings do not guarantee a particular frame rate.
+- Notification permissions and device battery restrictions should be checked on the intended physical device.
