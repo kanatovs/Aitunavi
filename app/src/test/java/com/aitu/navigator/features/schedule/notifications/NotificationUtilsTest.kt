@@ -8,6 +8,8 @@ import android.os.Build
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertFalse
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -90,5 +92,16 @@ class NotificationUtilsTest {
         assertEquals(1, shadowOf(manager).allNotifications.size)
         assertEquals("Updated lesson", notification.extras.getCharSequence(Notification.EXTRA_TITLE))
         assertEquals("Room changed", notification.extras.getCharSequence(Notification.EXTRA_TEXT))
+    }
+
+    @Test
+    fun showSilentLessonNotificationUsesChannelWithoutSoundOrVibration() {
+        NotificationUtils.showLessonNotification(application, 42, "Lesson", "Starts soon", soundEnabled = false)
+
+        val notification = requireNotNull(shadowOf(manager).getNotification(42))
+        val channel = requireNotNull(manager.getNotificationChannel(notification.channelId))
+        assertNotEquals(NotificationUtils.CHANNEL_ID, notification.channelId)
+        assertNull(channel.sound)
+        assertFalse(channel.shouldVibrate())
     }
 }

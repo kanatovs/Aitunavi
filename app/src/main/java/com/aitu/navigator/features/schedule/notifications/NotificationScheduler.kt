@@ -6,183 +6,102 @@ import android.content.Context
 import android.content.Intent
 import com.aitu.navigator.data.datastore.SettingsState
 import com.aitu.navigator.data.model.GroupSchedule
-import com.aitu.navigator.data.model.Lesson
-import java.time.DayOfWeek
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.LocalTime
 import java.time.ZoneId
+import java.util.UUID
 
 object NotificationScheduler {
+    private const val PREFS = "scheduled_lesson_notifications"
+    private const val IDS = "pending_ids"
+    private const val GENERATION = "generation"
+    private const val LEGACY_CLEANED = "legacy_cleaned"
+    private const val ACTION = "com.aitu.navigator.LESSON_REMINDER"
 
-    fun cancelAll(context: Context) {
-        // Временный безопасный вариант:
-        // ничего массово не создаём и не отменяем,
-        // чтобы не словить Too many PendingIntent.
-    }
+    @Synchronized
+    fun currentGeneration(context: Context): String? =
+        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(GENERATION, null)
 
-    fun rescheduleForGroup(
-        context: Context,
-        group: GroupSchedule,
-        settings: SettingsState
-    ) {
-        cancelAll(context)
-
-        if (!settings.notificationsEnabled) return
-
-        val now = LocalDateTime.now()
-        val zone = ZoneId.systemDefault()
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-
-        val upcomingLessons = buildUpcomingLessonsForNext7Days(group.schedule)
-
-        var notificationId = 1
-
-        for (lessonWithDate in upcomingLessons) {
-            val lesson = lessonWithDate.lesson
-            val lessonDate = lessonWithDate.date
-
-            if (!shouldNotifyLesson(lesson, settings)) continue
-
-            val startTime = parseStartTime(lesson.time) ?: continue
-            val lessonStart = LocalDateTime.of(lessonDate, startTime)
-            val notifyAt = lessonStart.minusMinutes(settings.leadMinutes.toLong())
-
-            if (notifyAt.isBefore(now)) continue
-            if (isInQuietHours(notifyAt.toLocalTime(), settings)) continue
-
-            val title = when (settings.notificationFormat) {
-                "TitleOnly" -> "Lesson soon"
-                else -> "${lesson.discipline} in ${settings.leadMinutes} min"
-            }
-
-            val message = if (settings.notificationFormat == "TitleOnly") {
-                lesson.discipline
-            } else {
-                buildString {
-                    append("Time: ${lesson.time}")
-                    if (settings.showTypeInFull) append(" • ${lesson.type}")
-                    append(" • ${lesson.classroom}")
-                }
-            }
-
-            val intent = Intent(context, LessonNotificationReceiver::class.java).apply {
-                putExtra(LessonNotificationReceiver.EXTRA_TITLE, title)
-                putExtra(LessonNotificationReceiver.EXTRA_MESSAGE, message)
-                putExtra(LessonNotificationReceiver.EXTRA_NOTIFICATION_ID, notificationId)
-            }
-
-            val pendingIntent = PendingIntent.getBroadcast(
-                context,
-                notificationId,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
-
-            val triggerAtMillis = notifyAt.atZone(zone).toInstant().toEpochMilli()
-
-            alarmManager.setAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP,
-                triggerAtMillis,
-                pendingIntent
-            )
-
-            notificationId++
-        }
-    }
-
-    fun countPlannedForNext7Days(
-        group: GroupSchedule,
-        settings: SettingsState,
-        now: LocalDateTime = LocalDateTime.now()
-    ): Int {
-        if (!settings.notificationsEnabled) return 0
-
-        return buildUpcomingLessonsForNext7Days(group.schedule).count { item ->
-            val lesson = item.lesson
-            if (!shouldNotifyLesson(lesson, settings)) return@count false
-
-            val startTime = parseStartTime(lesson.time) ?: return@count false
-            val lessonStart = LocalDateTime.of(item.date, startTime)
-            val notifyAt = lessonStart.minusMinutes(settings.leadMinutes.toLong())
-
-            !notifyAt.isBefore(now) && !isInQuietHours(notifyAt.toLocalTime(), settings)
-        }
-    }
-
-    private fun shouldNotifyLesson(
-        lesson: Lesson,
-        settings: SettingsState
-    ): Boolean {
-        val isOnline = lesson.classroom.contains("online", ignoreCase = true)
-        val isLecture = lesson.type.contains("lecture", ignoreCase = true)
-
-        if (!settings.includeOnline && isOnline) return false
-        if (!settings.includeLecture && isLecture) return false
-
+    @Synchronized
+    fun rescheduleIfUnchanged(context: Context, group: GroupSchedule?, settings: SettingsState, expectedGeneration: String?): Boolean {
+        // A user may cancel while an older refresh is reading/parsing the schedule.
+        if (currentGeneration(context) != expectedGeneration) return false
+        rescheduleForGroup(context, group, settings)
         return true
     }
 
-    private fun parseStartTime(timeRange: String): LocalTime? {
-        return try {
-            val parts = timeRange.replace(" ", "").split("-")
-            if (parts.size != 2) return null
-            LocalTime.parse(parts[0])
-        } catch (_: Exception) {
-            null
+    @Synchronized
+    fun cancelAll(context: Context) {
+        val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        val ids = prefs.getStringSet(IDS, emptySet()).orEmpty().mapNotNull { it.toIntOrNull() }
+        // Persist invalidation first: a broadcast already queued by Android must also be ignored.
+        check(prefs.edit().remove(IDS).putString(GENERATION, UUID.randomUUID().toString()).commit())
+        val manager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        ids.forEach { cancelExisting(context, manager, it, ACTION) }
+        if (!prefs.getBoolean(LEGACY_CLEANED, false)) {
+            // Previous versions did not track alarms. NO_CREATE never allocates new PendingIntents.
+            (1..512).forEach { cancelExisting(context, manager, it, null) }
+            prefs.edit().putBoolean(LEGACY_CLEANED, true).apply()
         }
     }
 
-    private fun isInQuietHours(
-        time: LocalTime,
-        settings: SettingsState
-    ): Boolean {
-        if (!settings.quietHoursEnabled) return false
-
-        val start = LocalTime.of(settings.quietStartHour, settings.quietStartMinute)
-        val end = LocalTime.of(settings.quietEndHour, settings.quietEndMinute)
-
-        return if (start <= end) {
-            !time.isBefore(start) && !time.isAfter(end)
-        } else {
-            !time.isBefore(start) || !time.isAfter(end)
-        }
+    private fun cancelExisting(context: Context, manager: AlarmManager, id: Int, action: String?) {
+        val intent = Intent(context, LessonNotificationReceiver::class.java).apply { this.action = action }
+        PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE)
+            ?.let { pending ->
+                manager.cancel(pending)
+                pending.cancel()
+            }
     }
 
-    private fun buildUpcomingLessonsForNext7Days(
-        lessons: List<Lesson>
-    ): List<LessonWithDate> {
-        val today = LocalDate.now()
-        val result = mutableListOf<LessonWithDate>()
-
-        for (offset in 0..6) {
-            val date = today.plusDays(offset.toLong())
-            val dayName = date.dayOfWeek.toEnglishDayName()
-
-            lessons
-                .filter { it.day.equals(dayName, ignoreCase = true) }
-                .forEach { lesson ->
-                    result += LessonWithDate(date, lesson)
+    @Synchronized
+    fun rescheduleForGroup(context: Context, group: GroupSchedule?, settings: SettingsState) {
+        cancelAll(context)
+        if (group == null) return
+        val plan = NotificationPlan.build(group, settings, LocalDateTime.now())
+        if (plan.isEmpty()) return
+        val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        val generation = prefs.getString(GENERATION, null) ?: return
+        // Record before creation so an interrupted scheduling pass can be cleaned up on restart.
+        check(prefs.edit().putStringSet(IDS, plan.map { it.id.toString() }.toSet()).commit())
+        val manager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val zone = ZoneId.systemDefault()
+        try {
+            plan.forEach { item ->
+                val intent = Intent(context, LessonNotificationReceiver::class.java).apply {
+                    action = ACTION
+                    putExtra(LessonNotificationReceiver.EXTRA_TITLE, item.title)
+                    putExtra(LessonNotificationReceiver.EXTRA_MESSAGE, item.message)
+                    putExtra(LessonNotificationReceiver.EXTRA_NOTIFICATION_ID, item.id)
+                    putExtra(LessonNotificationReceiver.EXTRA_SOUND_ENABLED, item.soundEnabled)
+                    putExtra(LessonNotificationReceiver.EXTRA_GENERATION, generation)
                 }
-        }
-
-        return result
-    }
-
-    private fun DayOfWeek.toEnglishDayName(): String {
-        return when (this) {
-            DayOfWeek.MONDAY -> "Monday"
-            DayOfWeek.TUESDAY -> "Tuesday"
-            DayOfWeek.WEDNESDAY -> "Wednesday"
-            DayOfWeek.THURSDAY -> "Thursday"
-            DayOfWeek.FRIDAY -> "Friday"
-            DayOfWeek.SATURDAY -> "Saturday"
-            DayOfWeek.SUNDAY -> "Sunday"
+                val pending = PendingIntent.getBroadcast(
+                    context, item.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                )
+                manager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, item.notifyAt.atZone(zone).toInstant().toEpochMilli(), pending)
+            }
+        } catch (error: Exception) {
+            cancelAll(context)
+            throw error
         }
     }
 
-    private data class LessonWithDate(
-        val date: LocalDate,
-        val lesson: Lesson
-    )
+    @Synchronized
+    fun deliverIfCurrent(context: Context, intent: Intent) {
+        val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        val generation = intent.getStringExtra(LessonNotificationReceiver.EXTRA_GENERATION) ?: return
+        val id = intent.getIntExtra(LessonNotificationReceiver.EXTRA_NOTIFICATION_ID, 0)
+        val ids = prefs.getStringSet(IDS, emptySet()).orEmpty()
+        if (generation != prefs.getString(GENERATION, null) || id.toString() !in ids) return
+        prefs.edit().putStringSet(IDS, ids - id.toString()).apply()
+        NotificationUtils.showLessonNotification(
+            context, id,
+            intent.getStringExtra(LessonNotificationReceiver.EXTRA_TITLE) ?: "Lesson soon",
+            intent.getStringExtra(LessonNotificationReceiver.EXTRA_MESSAGE).orEmpty(),
+            intent.getBooleanExtra(LessonNotificationReceiver.EXTRA_SOUND_ENABLED, true)
+        )
+    }
+
+    fun countPlannedForNext7Days(group: GroupSchedule, settings: SettingsState, now: LocalDateTime = LocalDateTime.now()): Int =
+        NotificationPlan.build(group, settings, now).size
 }
